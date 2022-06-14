@@ -23,4 +23,4 @@ Once you are finished solving the exercises make sure to commit your changes, pu
 
 # Solutions
 
-We also incorporated the solution samples on `./src/solution.py` that we strongly suggest you only use if you are stuck for more than 30min or if you have already finished and want to compare it with your approach.
+We also incorporated the solution samples on `./src/solution.md` that we strongly suggest you only use if you are stuck for more than 30min or if you have already finished and want to compare it with your approach.

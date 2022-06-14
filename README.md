@@ -13,7 +13,7 @@ Inside this repository, you will find a file called `./INSTRUCTIONS.md` with the
 
 The easiest way to start working on this project is by using Gitpod:
 
-1. Make a fork of [this repository](https://github.com/4geeksacademy/connecting-to-a-sql-database-project-tutorial) into your github account.
+1. Make a fork of [this repository](https://github.com/4geeksacademy/web-scraping-project-tutorial) into your github account.
 2. Open the recently created fork on Gitpod by using the [Gitpod button extension](https://www.gitpod.io/docs/browser-extension/).
 3. Once Gitpod VSCode has finished opening you can go ahead and open the `problems.ipynb` file and start solving each exercise inside the notebook.
 

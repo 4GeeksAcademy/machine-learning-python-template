@@ -5,6 +5,9 @@
 image:
   file: .gitpod.Dockerfile
 
+tasks:
+  - command: gp open INSTRUCTIONS.md;
+  
 ports:
   - port: 9000-9099
     onOpen: ignore

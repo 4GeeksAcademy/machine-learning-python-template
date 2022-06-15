@@ -6,8 +6,12 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - command: gp open INSTRUCTIONS.md;
-  
+  - command: >
+      (cp -n .env.example .env || true) && 
+      psql -U gitpod -c 'CREATE DATABASE example;'
+      gp open README.md;
+      npm install heroku -g;
+
 ports:
   - port: 9000-9099
     onOpen: ignore

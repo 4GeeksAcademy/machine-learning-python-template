@@ -1,5 +1,15 @@
+# Base ----------------------------------------
 sqlalchemy==1.4.37
 pymysql==1.0.2
-requests==2.27.1
 pandas==1.4.2
 python-dotenv==0.20.0
+psycopg2-binary==2.9.3
+
+numpy>=1.18.5
+opencv-python>=4.1.2
+matplotlib>=3.2.2
+ipyleaflet>=0.14.0
+sympy>=1.10.1
+
+# Machine learning ----------------------------
+sklearn

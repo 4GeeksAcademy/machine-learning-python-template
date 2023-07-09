@@ -10,7 +10,6 @@ tasks:
       (cp -n .env.example .env || true) && 
       psql -U gitpod -c 'CREATE DATABASE example;'
       gp open README.md;
-      npm install heroku -g;
 
 ports:
   - port: 9000-9099
@@ -20,3 +19,4 @@ vscode:
   extensions:
     - ms-toolsai.jupyter
     - ms-python.python
+    - vscode.python

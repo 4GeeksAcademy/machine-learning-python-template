@@ -1,4 +1,5 @@
 # Base ----------------------------------------
+ipywidgets==7.7.1
 sqlalchemy==1.4.37
 pymysql==1.0.2
 pandas==1.4.2
@@ -13,4 +14,4 @@ ipyleaflet>=0.14.0
 sympy>=1.10.1
 
 # Machine learning ----------------------------
-sklearn
+scikit-learn

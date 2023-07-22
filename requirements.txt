@@ -12,6 +12,8 @@ opencv-python>=4.1.2
 matplotlib>=3.2.2
 ipyleaflet>=0.14.0
 sympy>=1.10.1
+joblib
+xgboost
 
 # Machine learning ----------------------------
 scikit-learn

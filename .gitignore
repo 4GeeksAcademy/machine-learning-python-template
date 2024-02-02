@@ -1,3 +1,5 @@
 __pycache__
 .env
 .learn
+clean_airbnb_train.csv
+clean_airbnb_test.csv

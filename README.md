@@ -7,6 +7,7 @@ This boilerplate is designed to kickstart data science projects by providing a b
 The project is organized as follows:
 
 - `app.py` - The main Python script that you run for your project.
+- `explore.py` - A notebook to explore data, play around, visualize, clean, etc. Ideally the notebook code should be migrated to the app.py when moving to production.
 - `utils.py` - This file contains utility code for operations like database connections.
 - `requirements.txt` - This file contains the list of necessary python packages.
 - `models/` - This directory should contain your SQLAlchemy model classes.
@@ -31,6 +32,16 @@ Navigate to the project directory and install the required Python packages:
 ```bash
 pip install -r requirements.txt
 ```
+
+**Create a database (if needed)**
+
+Create a new database within the Postgres engine by customizing and executing the following command: `$ createdb -h localhost -U <username> <db_name>`
+Connect to the Postgres engine to use your database, manipulate tables and data: `$ psql -h localhost -U <username> <db_name>`
+NOTE: Remember to check the ./.env file information to get the username and db_name.
+
+Once you are inside PSQL you will be able to create tables, make queries, insert, update or delete data and much more!
+
+**Environment Variables**
 
 Create a .env file in the project root directory to store your environment variables, such as your database connection string:
 

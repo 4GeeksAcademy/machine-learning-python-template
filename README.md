@@ -19,9 +19,11 @@ The project is organized as follows:
 ## Setup
 
 **Prerequisites**
-Ensure you have Python 3.6+ installed on your system. You will also need pip for installing the Python packages.
+
+Make sure you have Python 3.11+ installed on your. You will also need pip for installing the Python packages.
 
 **Installation**
+
 Clone the project repository to your local machine.
 
 Navigate to the project directory and install the required Python packages:
@@ -69,4 +71,8 @@ You can place your raw datasets in the data/raw directory, intermediate datasets
 
 To process data, you can modify the app.py script to include your data processing steps, utilizing pandas for data manipulation and analysis.
 
+## Contributors
 
+This template was built as part of the 4Geeks Academy [Data Science and Machine Learning Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning) by [Alejandro Sanchez](https://twitter.com/alesanchezr) and many other contributors. Find out more about [4Geeks Academy's BootCamp programs](https://4geeksacademy.com/us/programs) here.
+
+Other templates and resources like this can be found on the school GitHub page.

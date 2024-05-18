@@ -15,3 +15,5 @@ sympy>=1.10.1
 xgboost
 openpyxl
 xlrd
+statsmodel
+pmdarima

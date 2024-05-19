@@ -104,7 +104,6 @@ def predict():
     if request.method == 'POST':
         # Obtener los valores seleccionados por el usuario
         edad = int(request.form['edad'])
-        feature2_manual = request.form['feature2_manual']
         features = {}
         for col in categories.keys():
             selected_option = request.form.get(col, None)
@@ -115,7 +114,6 @@ def predict():
         # Convertir las entradas en el formato necesario para el modelo
         input_data = pd.DataFrame(features, index=[0])
         input_data['edad'] = edad  # Añadir la edad al DataFrame
-        input_data['feature2_manual'] = feature2_manual  # Añadir la variable de entrada manual
         # Realizar la predicción
         prediction = model.predict(input_data)[0]
 

@@ -103,30 +103,115 @@ questions = {
 }
 
 answer_mapping = {
-    'EDAD': [], 
-    'ESTU_COD_DEPTO_PRESENTACION': ['AMAZONAS': 91, 'ANTIOQUIA': 5, 'ARAUCA': 81, 'ATLANTICO': 8, 'BOGOTÁ': 11, 'BOLIVAR': 13, 'BOYACA': 15, 'CALDAS': 17, 'CAQUETA': 18, 'CASANARE': 85, 'CAUCA': 19, 'CESAR': 20, 'CHOCO': 27, 'CORDOBA': 23, 'CUNDINAMARCA': 25, 'GUAINIA': 94, 'GUAVIARE': 95, 'HUILA': 41, 'LA GUAJIRA': 44, 'MAGDALENA': 47, 'META': 50, 'NARIÑO': 52, 'NORTE SANTANDER': 54, 'PUTUMAYO': 86, 'QUINDIO': 63, 'RISARALDA': 66, 'SANTANDER': 68, 'SUCRE': 70, 'TOLIMA': 73, 'VALLE': 76, 'VAUPES': 97, 'VICHADA': 99, 'SAN ANDRES': 88],
-    'ESTU_DEDICACIONINTERNET':['30 minutos o menos': 0, 'Entre 1 y 3 horas': 1, 'Entre 30 y 60 minutos': 2, 'Más de 3 horas': 3, 'No Navega Internet': 4],
-    'ESTU_DEDICACIONLECTURADIARIA': ['30 minutos o menos': 0, 'Entre 1 y 2 horas': 1, 'Entre 30 y 60 minutos': 2, 'Más de 2 horas': 3, 'No leo por entretenimiento': 4],
-    'ESTU_DEPTO_RESIDE': ['AMAZONAS': 0, 'ANTIOQUIA': 1, 'ARAUCA': 2, 'ATLANTICO': 3, 'BOGOTÁ': 4, 'BOLIVAR': 5, 'BOYACA': 6, 'CALDAS': 7, 'CAQUETA': 8, 'CASANARE': 9, 'CAUCA': 10, 'CESAR': 11, 'CHOCO': 12, 'CORDOBA': 13, 'CUNDINAMARCA': 14, 'GUAINIA': 15, 'GUAVIARE': 16, 'HUILA': 17, 'LA GUAJIRA': 18, 'MAGDALENA': 19, 'META': 20, 'NARIÑO': 21, 'NORTE SANTANDER': 22, 'PUTUMAYO': 23, 'QUINDIO': 24, 'RISARALDA': 25, 'SANTANDER': 26, 'SUCRE': 27, 'TOLIMA': 28, 'VALLE': 29, 'VAUPES': 30, 'VICHADA': 31, 'SAN ANDRES': 32, 'EXTRANJERO': 33],
-    'ESTU_HORASSEMANATRABAJA': ['0 horas': 0, 'Entre 11 y 20 horas': 1, 'Entre 21 y 30 horas': 2, 'Menos de 10 horas': 3, 'Más de 30 horas': 4],
-    'ESTU_TIPOREMUNERACION': ['No': 0, 'Si, en efectivo': 1, 'Si, en efectivo y especie': 2, 'Si, en especie': 3],
-    'FAMI_COMECARNEPESCADOHUEVO': ['1 o 2 veces por semana': 0, '3 a 5 veces por semana': 1, 'Nunca o rara vez comemos eso': 2, 'Todos o casi todos los días': 3],
-    'FAMI_COMECEREALFRUTOSLEGUMBRE': ['1 o 2 veces por semana': 0, '3 a 5 veces por semana': 1, 'Nunca o rara vez comemos eso': 2, 'Todos o casi todos los días': 3],
-    'FAMI_COMELECHEDERIVADOS': ['1 o 2 veces por semana': 0, '3 a 5 veces por semana': 1, 'Nunca o rara vez comemos eso': 2, 'Todos o casi todos los días': 3],
-    'FAMI_CUARTOSHOGAR': ['Cinco': 0, 'Cuatro': 1, 'Dos': 2, 'Seis o mas': 2, 'Tres': 3, 'Uno': 4],
-    'FAMI_EDUCACIONMADRE': ['Educación profesional completa': 0, 'Educación profesional incompleta': 1, 'Ninguno': 2, 'No Aplica': 3, 'No sabe': 4, 'Postgrado': 5, 'Primaria completa': 6, 'Primaria incompleta': 7, 'Secundaria (Bachillerato) completa': 8, 'Secundaria (Bachillerato) incompleta': 9, 'Técnica o tecnológica completa': 10, 'Técnica o tecnológica incompleta': 11],
-    'FAMI_EDUCACIONPADRE': ['Educación profesional completa': 0, 'Educación profesional incompleta': 1, 'Ninguno': 2, 'No Aplica': 3, 'No sabe': 4, 'Postgrado': 5, 'Primaria completa': 6, 'Primaria incompleta': 7, 'Secundaria (Bachillerato) completa': 8, 'Secundaria (Bachillerato) incompleta': 9, 'Técnica o tecnológica completa': 10, 'Técnica o tecnológica incompleta': 11],
-    'FAMI_ESTRATOVIVIENDA': ['Estrato 1': 0, 'Estrato 2': 1, 'Estrato 3': 2, 'Estrato 4': 3, 'Estrato 5': 4, 'Estrato 6': 5, 'Sin Estrato': 6],
-    'FAMI_NUMLIBROS': ['0 A 10 LIBROS': 0, '11 A 25 LIBROS': 1, '26 A 100 LIBROS': 2, 'MÁS DE 100 LIBROS': 3],
-    'FAMI_PERSONASHOGAR': ['1 a 2': 0, '3 a 4': 1, '5 a 6': 2, '7 a 8': 3, '9 o más': 4],
-    'FAMI_SITUACIONECONOMICA': ['Igual': 0, 'Mejor': 1, 'Peor': 2],
-    'FAMI_TRABAJOLABORMADRE': ['Es agricultor, pesquero o jornalero': 0, 'Es dueño de un negocio grande, tiene un cargo de nivel directivo o gerencial': 1, 'Es dueño de un negocio pequeño (tiene pocos empleados o no tiene, por ejemplo tienda, papelería, etc': 2, 'Es operario de máquinas o conduce vehículos (taxita, chofer)': 3, 'Es vendedor o trabaja en atención al público': 4, 'No aplica': 5, 'No sabe': 6, 'Pensionado': 7, 'Tiene un trabajo de tipo auxiliar administrativo (por ejemplo, secretario o asistente)': 8, 'Trabaja como personal de limpieza, mantenimiento, seguridad o construcción': 9, 'Trabaja como profesional (por ejemplo médico, abogado, ingeniero)': 10, 'Trabaja en el hogar, no trabaja o estudia': 11, 'Trabaja por cuenta propia (por ejemplo plomero, electricista)': 12],
-    'FAMI_TRABAJOLABORPADRE': ['Es agricultor, pesquero o jornalero': 0, 'Es dueño de un negocio grande, tiene un cargo de nivel directivo o gerencial': 1, 'Es dueño de un negocio pequeño (tiene pocos empleados o no tiene, por ejemplo tienda, papelería, etc': 2, 'Es operario de máquinas o conduce vehículos (taxita, chofer)': 3, 'Es vendedor o trabaja en atención al público': 4, 'No aplica': 5, 'No sabe': 6, 'Pensionado': 7, 'Tiene un trabajo de tipo auxiliar administrativo (por ejemplo, secretario o asistente)': 8, 'Trabaja como personal de limpieza, mantenimiento, seguridad o construcción': 9, 'Trabaja como profesional (por ejemplo médico, abogado, ingeniero)': 10, 'Trabaja en el hogar, no trabaja o estudia': 11, 'Trabaja por cuenta propia (por ejemplo plomero, electricista)': 12],
-    'ESTU_GENERO': ['F': 0, 'M': 1],
-    'FAMI_TIENEINTERNET': ['No': 0, 'Si': 1],
-    'FAMI_TIENECOMPUTADOR': ['No': 0, 'Si': 1],
-    'FAMI_TIENEHORNOMICROOGAS': ['No': 0, 'Si': 1],
-    'FAMI_TIENEMOTOCICLETA': ['No': 0, 'Si': 1]
+    'EDAD': {}, 
+    'ESTU_COD_DEPTO_PRESENTACION': {
+        'AMAZONAS': 91, 'ANTIOQUIA': 5, 'ARAUCA': 81, 'ATLANTICO': 8, 
+        'BOGOTÁ': 11, 'BOLIVAR': 13, 'BOYACA': 15, 'CALDAS': 17, 
+        'CAQUETA': 18, 'CASANARE': 85, 'CAUCA': 19, 'CESAR': 20, 
+        'CHOCO': 27, 'CORDOBA': 23, 'CUNDINAMARCA': 25, 'GUAINIA': 94, 
+        'GUAVIARE': 95, 'HUILA': 41, 'LA GUAJIRA': 44, 'MAGDALENA': 47, 
+        'META': 50, 'NARIÑO': 52, 'NORTE SANTANDER': 54, 'PUTUMAYO': 86, 
+        'QUINDIO': 63, 'RISARALDA': 66, 'SANTANDER': 68, 'SUCRE': 70, 
+        'TOLIMA': 73, 'VALLE': 76, 'VAUPES': 97, 'VICHADA': 99, 'SAN ANDRES': 88
+        },
+    'ESTU_DEDICACIONINTERNET':{
+        '30 minutos o menos': 0, 'Entre 1 y 3 horas': 1, 'Entre 30 y 60 minutos': 2, 
+        'Más de 3 horas': 3, 'No Navega Internet': 4
+        },
+    'ESTU_DEDICACIONLECTURADIARIA': {
+        '30 minutos o menos': 0, 'Entre 1 y 2 horas': 1, 'Entre 30 y 60 minutos': 2, 
+        'Más de 2 horas': 3, 'No leo por entretenimiento': 4
+        },
+    'ESTU_DEPTO_RESIDE': {
+        'AMAZONAS': 0, 'ANTIOQUIA': 1, 'ARAUCA': 2, 'ATLANTICO': 3, 
+        'BOGOTÁ': 4, 'BOLIVAR': 5, 'BOYACA': 6, 'CALDAS': 7, 'CAQUETA': 8, 
+        'CASANARE': 9, 'CAUCA': 10, 'CESAR': 11, 'CHOCO': 12, 
+        'CORDOBA': 13, 'CUNDINAMARCA': 14, 'GUAINIA': 15, 'GUAVIARE': 16, 
+        'HUILA': 17, 'LA GUAJIRA': 18, 'MAGDALENA': 19, 'META': 20, 
+        'NARIÑO': 21, 'NORTE SANTANDER': 22, 'PUTUMAYO': 23, 'QUINDIO': 24, 
+        'RISARALDA': 25, 'SANTANDER': 26, 'SUCRE': 27, 'TOLIMA': 28, 
+        'VALLE': 29, 'VAUPES': 30, 'VICHADA': 31, 'SAN ANDRES': 32, 'EXTRANJERO': 33
+        },
+    'ESTU_HORASSEMANATRABAJA': {
+        '0 horas': 0, 'Entre 11 y 20 horas': 1, 'Entre 21 y 30 horas': 2, 
+        'Menos de 10 horas': 3, 'Más de 30 horas': 4
+        },
+    'ESTU_TIPOREMUNERACION': {
+        'No': 0, 'Si, en efectivo': 1, 'Si, en efectivo y especie': 2, 'Si, en especie': 3
+        },
+    'FAMI_COMECARNEPESCADOHUEVO': {
+        '1 o 2 veces por semana': 0, '3 a 5 veces por semana': 1, 'Nunca o rara vez comemos eso': 2, 'Todos o casi todos los días': 3
+        },
+    'FAMI_COMECEREALFRUTOSLEGUMBRE': {
+        '1 o 2 veces por semana': 0, '3 a 5 veces por semana': 1, 'Nunca o rara vez comemos eso': 2, 'Todos o casi todos los días': 3
+        },
+    'FAMI_COMELECHEDERIVADOS': {
+        '1 o 2 veces por semana': 0, '3 a 5 veces por semana': 1, 'Nunca o rara vez comemos eso': 2, 'Todos o casi todos los días': 3
+        },
+    'FAMI_CUARTOSHOGAR': {
+        'Cinco': 0, 'Cuatro': 1, 'Dos': 2, 'Seis o mas': 2, 
+        'Tres': 3, 'Uno': 4
+        },
+    'FAMI_EDUCACIONMADRE': {
+        'Educación profesional completa': 0, 'Educación profesional incompleta': 1, 'Ninguno': 2, 'No Aplica': 3, 
+        'No sabe': 4, 'Postgrado': 5, 'Primaria completa': 6, 'Primaria incompleta': 7, 'Secundaria (Bachillerato) completa': 8, 
+        'Secundaria (Bachillerato) incompleta': 9, 'Técnica o tecnológica completa': 10, 'Técnica o tecnológica incompleta': 11
+        },
+    'FAMI_EDUCACIONPADRE': {
+        'Educación profesional completa': 0, 'Educación profesional incompleta': 1, 'Ninguno': 2, 'No Aplica': 3, 
+        'No sabe': 4, 'Postgrado': 5, 'Primaria completa': 6, 'Primaria incompleta': 7, 'Secundaria (Bachillerato) completa': 8, 
+        'Secundaria (Bachillerato) incompleta': 9, 'Técnica o tecnológica completa': 10, 'Técnica o tecnológica incompleta': 11
+        },
+    'FAMI_ESTRATOVIVIENDA': {
+        'Estrato 1': 0, 'Estrato 2': 1, 'Estrato 3': 2, 'Estrato 4': 3, 
+        'Estrato 5': 4, 'Estrato 6': 5, 'Sin Estrato': 6
+        },
+    'FAMI_NUMLIBROS': {
+        '0 A 10 LIBROS': 0, '11 A 25 LIBROS': 1, '26 A 100 LIBROS': 2, 'MÁS DE 100 LIBROS': 3
+        },
+    'FAMI_PERSONASHOGAR': {
+        '1 a 2': 0, '3 a 4': 1, '5 a 6': 2, '7 a 8': 3, '9 o más': 4
+        },
+    'FAMI_SITUACIONECONOMICA': {
+        'Igual': 0, 'Mejor': 1, 'Peor': 2
+        },
+    'FAMI_TRABAJOLABORMADRE': {
+        'Es agricultor, pesquero o jornalero': 0, 
+        'Es dueño de un negocio grande, tiene un cargo de nivel directivo o gerencial': 1, 
+        'Es dueño de un negocio pequeño (tiene pocos empleados o no tiene, por ejemplo tienda, papelería, etc': 2, 
+        'Es operario de máquinas o conduce vehículos (taxita, chofer)': 3, 
+        'Es vendedor o trabaja en atención al público': 4, 'No aplica': 5, 
+        'No sabe': 6, 
+        'Pensionado': 7, 
+        'Tiene un trabajo de tipo auxiliar administrativo (por ejemplo, secretario o asistente)': 8, 
+        'Trabaja como personal de limpieza, mantenimiento, seguridad o construcción': 9, 
+        'Trabaja como profesional (por ejemplo médico, abogado, ingeniero)': 10, 
+        'Trabaja en el hogar, no trabaja o estudia': 11, 'Trabaja por cuenta propia (por ejemplo plomero, electricista)': 12
+        },
+    'FAMI_TRABAJOLABORPADRE': {
+        'Es agricultor, pesquero o jornalero': 0, 
+        'Es dueño de un negocio grande, tiene un cargo de nivel directivo o gerencial': 1, 
+        'Es dueño de un negocio pequeño (tiene pocos empleados o no tiene, por ejemplo tienda, papelería, etc': 2, 
+        'Es operario de máquinas o conduce vehículos (taxita, chofer)': 3, 'Es vendedor o trabaja en atención al público': 4, 
+        'No aplica': 5, 'No sabe': 6, 'Pensionado': 7, 'Tiene un trabajo de tipo auxiliar administrativo (por ejemplo, secretario o asistente)': 8, 
+        'Trabaja como personal de limpieza, mantenimiento, seguridad o construcción': 9, 'Trabaja como profesional (por ejemplo médico, abogado, ingeniero)': 10, 
+        'Trabaja en el hogar, no trabaja o estudia': 11, 'Trabaja por cuenta propia (por ejemplo plomero, electricista)': 12
+        },
+    'ESTU_GENERO': {
+        'F': 0, 'M': 1
+        },
+    'FAMI_TIENEINTERNET': {
+        'No': 0, 'Si': 1
+        },
+    'FAMI_TIENECOMPUTADOR': {
+        'No': 0, 'Si': 1
+        },
+    'FAMI_TIENEHORNOMICROOGAS': {
+        'No': 0, 'Si': 1
+        },
+    'FAMI_TIENEMOTOCICLETA': {
+        'No': 0, 'Si': 1
+        }
 }
 
 #Quiero ser capaz de visualizar ambos dataframes, el numerico es el que el modelo usa para la predicción y el otro me permite ver los valores string, es decir, las opciones elegidas por los usuarios, para la visualizacion de datos.

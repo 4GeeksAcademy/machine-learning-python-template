@@ -1,0 +1,7 @@
+[2024-05-20 23:48:10 +0000] [13208] [INFO] Starting gunicorn 22.0.0
+[2024-05-20 23:48:10 +0000] [13208] [INFO] Listening at: http://0.0.0.0:8000 (13208)
+[2024-05-20 23:48:10 +0000] [13208] [INFO] Using worker: sync
+[2024-05-20 23:48:10 +0000] [13220] [INFO] Booting worker with pid: 13220
+[2024-05-20 23:48:10 +0000] [13221] [INFO] Booting worker with pid: 13221
+[2024-05-20 23:48:10 +0000] [13223] [INFO] Booting worker with pid: 13223
+[2024-05-20 23:48:10 +0000] [13224] [INFO] Booting worker with pid: 13224

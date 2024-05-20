@@ -6,14 +6,17 @@ import zipfile
 
 app = Flask(__name__)
 
-# Extraer el archivo zip que contiene el modelo
-with zipfile.ZipFile('/workspaces/proyecto_final_icfes/models/random_forest_classifier_default_42.zip', 'r') as zip_ref:
-    zip_ref.extractall('model')
+zip_path = '/workspaces/proyecto_final_icfes_definitivo/random_forest_classifier_default_42.zip'
 
-# Cargar el modelo desde el archivo descomprimido
-model_path = os.path.join('model', 'random_forest_classifier_default_42.sav')
-with open(model_path, 'rb') as model_file:
-    model = pickle.load(model_file)
+# Nombre del archivo del modelo dentro del ZIP
+model_filename = 'random_forest_classifier_default_42.sav'
+
+# Abrir el archivo ZIP
+with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+    # Leer el archivo del modelo desde el ZIP sin extraerlo
+    with zip_ref.open(model_filename) as model_file:
+        # Cargar el modelo usando pickle
+        model = pickle.load(model_file)
 
 
 #definir las categorias
@@ -218,7 +221,7 @@ answer_mapping = {
 original_data_df = pd.DataFrame(columns=categories)
 numeric_data_df = pd.DataFrame(columns=categories)
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def home():
     prediction = None
     input_data = {}

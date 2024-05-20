@@ -1,8 +1,8 @@
-import zipfile
+from flask import Flask, request, render_template, send_file
+import pandas as pd
 import os
 import pickle
-from flask import Flask, request, render_template
-import pandas as pd
+import zipfile
 
 app = Flask(__name__)
 
@@ -15,8 +15,38 @@ model_path = os.path.join('model', 'random_forest_classifier_default_42.sav')
 with open(model_path, 'rb') as model_file:
     model = pickle.load(model_file)
 
-# Definir las categorías (esto es un ejemplo, ajusta según tus datos)
+
+#definir las categorias
 categories = {
+    'EDAD', 
+    'ESTU_COD_DEPTO_PRESENTACION', 
+    'ESTU_DEDICACIONINTERNET', 
+    'ESTU_DEDICACIONLECTURADIARIA', 
+    'ESTU_DEPTO_RESIDE', 
+    'ESTU_HORASSEMANATRABAJA', 
+    'ESTU_TIPOREMUNERACION', 
+    'FAMI_COMECARNEPESCADOHUEVO', 
+    'FAMI_COMECEREALFRUTOSLEGUMBRE', 
+    'FAMI_COMELECHEDERIVADOS', 
+    'FAMI_CUARTOSHOGAR', 
+    'FAMI_EDUCACIONMADRE', 
+    'FAMI_EDUCACIONPADRE', 
+    'FAMI_ESTRATOVIVIENDA', 
+    'FAMI_NUMLIBROS', 
+    'FAMI_PERSONASHOGAR', 
+    'FAMI_SITUACIONECONOMICA', 
+    'FAMI_TRABAJOLABORMADRE', 
+    'FAMI_TRABAJOLABORPADRE', 
+    'ESTU_GENERO', 
+    'FAMI_TIENEINTERNET', 
+    'FAMI_TIENECOMPUTADOR', 
+    'FAMI_TIENEHORNOMICROOGAS', 
+    'FAMI_TIENEMOTOCICLETA'
+    'PUNT_GLOBAL'
+}
+
+# Definir las respuestas
+answers = {
     'EDAD': [], 
     'ESTU_COD_DEPTO_PRESENTACION': ['AMAZONAS', 'ANTIOQUIA', 'ARAUCA', 'ATLANTICO', 'BOGOTÁ', 'BOLIVAR', 'BOYACA', 'CALDAS', 'CAQUETA', 'CASANARE', 'CAUCA', 'CESAR', 'CHOCO', 'CORDOBA', 'CUNDINAMARCA', 'GUAINIA', 'GUAVIARE', 'HUILA', 'LA GUAJIRA', 'MAGDALENA', 'META', 'NARIÑO', 'NORTE SANTANDER', 'PUTUMAYO', 'QUINDIO', 'RISARALDA', 'SANTANDER', 'SUCRE', 'TOLIMA', 'VALLE', 'VAUPES', 'VICHADA', 'SAN ANDRES'], 
     'ESTU_DEDICACIONINTERNET':['30 minutos o menos', 'Entre 1 y 3 horas', 'Entre 30 y 60 minutos', 'Más de 3 horas', 'No Navega Internet'],
@@ -68,12 +98,13 @@ questions = {
     'FAMI_TIENEINTERNET': '¿Tiene internet?',
     'FAMI_TIENECOMPUTADOR': '¿Tiene computador?',
     'FAMI_TIENEHORNOMICROOGAS': '¿Tiene horno, microondas y/o estufa a gas?',
-    'FAMI_TIENEMOTOCICLETA': '¿Tiene moto?'
+    'FAMI_TIENEMOTOCICLETA': '¿Tiene moto?',
+    'PUNT_GLOBAL': None
 }
 
-category_mapping = {
+answer_mapping = {
     'EDAD': [], 
-    'ESTU_COD_DEPTO_PRESENTACION': ['AMAZONAS': 91, 'ANTIOQUIA': 5, 'ARAUCA': 81, 'ATLANTICO': 8, 'BOGOTÁ': 11, 'BOLIVAR': 13, 'BOYACA': 15, 'CALDAS': 17, 'CAQUETA': 18, 'CASANARE': 85, 'CAUCA': 19, 'CESAR': 20, 'CHOCO': 27, 'CORDOBA': 23, 'CUNDINAMARCA': 25, 'GUAINIA': 94, 'GUAVIARE': 95, 'HUILA': 41, 'LA GUAJIRA': 44, 'MAGDALENA': 47, 'META': 50, 'NARIÑO': 52, 'NORTE SANTANDER': 54, 'PUTUMAYO': 86, 'QUINDIO': 63, 'RISARALDA': 66, 'SANTANDER': 68, 'SUCRE': 70, 'TOLIMA': 73, 'VALLE': 76, 'VAUPES': 97, 'VICHADA': 99, 'SAN ANDRES': 88], 
+    'ESTU_COD_DEPTO_PRESENTACION': ['AMAZONAS': 91, 'ANTIOQUIA': 5, 'ARAUCA': 81, 'ATLANTICO': 8, 'BOGOTÁ': 11, 'BOLIVAR': 13, 'BOYACA': 15, 'CALDAS': 17, 'CAQUETA': 18, 'CASANARE': 85, 'CAUCA': 19, 'CESAR': 20, 'CHOCO': 27, 'CORDOBA': 23, 'CUNDINAMARCA': 25, 'GUAINIA': 94, 'GUAVIARE': 95, 'HUILA': 41, 'LA GUAJIRA': 44, 'MAGDALENA': 47, 'META': 50, 'NARIÑO': 52, 'NORTE SANTANDER': 54, 'PUTUMAYO': 86, 'QUINDIO': 63, 'RISARALDA': 66, 'SANTANDER': 68, 'SUCRE': 70, 'TOLIMA': 73, 'VALLE': 76, 'VAUPES': 97, 'VICHADA': 99, 'SAN ANDRES': 88],
     'ESTU_DEDICACIONINTERNET':['30 minutos o menos': 0, 'Entre 1 y 3 horas': 1, 'Entre 30 y 60 minutos': 2, 'Más de 3 horas': 3, 'No Navega Internet': 4],
     'ESTU_DEDICACIONLECTURADIARIA': ['30 minutos o menos': 0, 'Entre 1 y 2 horas': 1, 'Entre 30 y 60 minutos': 2, 'Más de 2 horas': 3, 'No leo por entretenimiento': 4],
     'ESTU_DEPTO_RESIDE': ['AMAZONAS': 0, 'ANTIOQUIA': 1, 'ARAUCA': 2, 'ATLANTICO': 3, 'BOGOTÁ': 4, 'BOLIVAR': 5, 'BOYACA': 6, 'CALDAS': 7, 'CAQUETA': 8, 'CASANARE': 9, 'CAUCA': 10, 'CESAR': 11, 'CHOCO': 12, 'CORDOBA': 13, 'CUNDINAMARCA': 14, 'GUAINIA': 15, 'GUAVIARE': 16, 'HUILA': 17, 'LA GUAJIRA': 18, 'MAGDALENA': 19, 'META': 20, 'NARIÑO': 21, 'NORTE SANTANDER': 22, 'PUTUMAYO': 23, 'QUINDIO': 24, 'RISARALDA': 25, 'SANTANDER': 26, 'SUCRE': 27, 'TOLIMA': 28, 'VALLE': 29, 'VAUPES': 30, 'VICHADA': 31, 'SAN ANDRES': 32, 'EXTRANJERO': 33],
@@ -98,29 +129,60 @@ category_mapping = {
     'FAMI_TIENEMOTOCICLETA': ['No': 0, 'Si': 1]
 }
 
-@app.route('/', methods=['GET', 'POST'])
+#Quiero ser capaz de visualizar ambos dataframes, el numerico es el que el modelo usa para la predicción y el otro me permite ver los valores string, es decir, las opciones elegidas por los usuarios, para la visualizacion de datos.
+original_data_df = pd.DataFrame(columns=categories.keys())
+numeric_data_df = pd.DataFrame(columns=categories.keys())
+
 def home():
     prediction = None
+    input_data = {}
+    numeric_input_data = {}  # Para almacenar valores numéricos
+
     if request.method == "POST":
-        input_data = {}
         for feature, question in questions.items():
             if feature == 'EDAD':
                 input_data[feature] = int(request.form[feature])
             else:
-                input_data[feature] = request.form[question]
-        
-        # Aplicar el mapeo de categorías a valores numéricos
-        for feature in input_data.keys():
-            if feature in category_mapping:
-                input_data[feature] = category_mapping[feature][input_data[feature]]
-        
+                input_data[feature] = request.form[feature]
+
+                # Convertir la respuesta a un valor numérico
+                if feature in answer_mapping:
+                    numeric_input_data[feature] = answer_mapping[feature][input_data[feature]]
+                else:
+                    numeric_input_data[feature] = input_data[feature]
+
         # Convertir los datos del formulario a un DataFrame de Pandas
-        input_df = pd.DataFrame([input_data])
+        input_df = pd.DataFrame([numeric_input_data])
         
-        # Realizar predicción con el modelo (reemplace esto con su código de predicción)
-        prediction = "Predicción no implementada"
-    
-    return render_template("index.html", questions=questions, prediction=prediction)
+        # Realizar predicción con el modelo
+        prediction = model.predict(input_df)[0]
+
+        # Añadir la predicción al input_data y numeric_input_data
+        input_data['PUNT_GLOBAL'] = prediction
+        numeric_input_data['PUNT_GLOBAL'] = prediction
+
+        # Agregar los datos originales al DataFrame
+        original_data_df.loc[len(original_data_df)] = input_data
+        
+        # Agregar los datos numéricos al DataFrame
+        numeric_data_df.loc[len(numeric_data_df)] = numeric_input_data
+
+    return render_template("index.html", questions=questions, answers=answers, prediction=prediction)
+
+# Rutas para descargar los archivos CSV
+@app.route('/original_data_csv')
+def download_original_data_csv():
+    # Guardar el DataFrame como un archivo CSV con los nombres de columnas de categories
+    original_data_df.to_csv('original_data.csv', index=False)
+    # Retornar el archivo CSV como una respuesta para descargar
+    return send_file('original_data.csv', as_attachment=True)
+
+@app.route('/numeric_data_csv')
+def download_numeric_data_csv():
+    # Guardar el DataFrame como un archivo CSV con los nombres de columnas de categories
+    numeric_data_df.to_csv('numeric_data.csv', index=False)
+    # Retornar el archivo CSV como una respuesta para descargar
+    return send_file('numeric_data.csv', as_attachment=True)
 
 if __name__ == "__main__":
     app.run(debug=True)

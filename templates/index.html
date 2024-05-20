@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de puntaje Icfes</title>
+</head>
+<body>
+    <h1>Formulario de Predicción</h1>
+    <form action="/" method="post">
+        {% for feature, question in questions.items() %}
+            <div>
+                <label for="{{ feature }}">{{ question }}:</label>
+                {% if feature == 'EDAD' %}
+                    <input type="number" name="{{ feature }}" id="{{ feature }}">
+                {% elif feature in answers %}
+                    <select name="{{ feature }}" id="{{ feature }}">
+                        {% for option in answers[feature] %}
+                            <option value="{{ option }}">{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                {% else %}
+                    <input type="text" name="{{ feature }}" id="{{ feature }}">
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit">Predecir</button>
+    </form>
+    {% if prediction is not none %}
+        <h2>Predicción del PUNTAJE GLOBAL: {{ prediction }}</h2>
+    {% endif %}
+    <a href="/original_data_csv">Descargar datos originales CSV</a>
+    <a href="/numeric_data_csv">Descargar datos numéricos CSV</a>
+</body>
+</html>

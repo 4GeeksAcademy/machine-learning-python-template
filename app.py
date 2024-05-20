@@ -73,7 +73,7 @@ questions = {
 
 category_mapping = {
     'EDAD': [], 
-    'ESTU_COD_DEPTO_PRESENTACION': ['AMAZONAS': 0, 'ANTIOQUIA': 1, 'ARAUCA': 2, 'ATLANTICO': 3, 'BOGOTÁ': 4, 'BOLIVAR': 5, 'BOYACA': 6, 'CALDAS': 7, 'CAQUETA': 8, 'CASANARE': 9, 'CAUCA': 10, 'CESAR': 11, 'CHOCO': 12, 'CORDOBA': 13, 'CUNDINAMARCA': 14, 'GUAINIA': 15, 'GUAVIARE': 16, 'HUILA': 17, 'LA GUAJIRA': 18, 'MAGDALENA': 19, 'META': 20, 'NARIÑO': 21, 'NORTE SANTANDER': 22, 'PUTUMAYO': 23, 'QUINDIO': 24, 'RISARALDA': 25, 'SANTANDER': 26, 'SUCRE': 27, 'TOLIMA': 28, 'VALLE': 29, 'VAUPES': 30, 'VICHADA': 31, 'SAN ANDRES': 32], 
+    'ESTU_COD_DEPTO_PRESENTACION': ['AMAZONAS': 91, 'ANTIOQUIA': 5, 'ARAUCA': 81, 'ATLANTICO': 8, 'BOGOTÁ': 11, 'BOLIVAR': 13, 'BOYACA': 15, 'CALDAS': 17, 'CAQUETA': 18, 'CASANARE': 85, 'CAUCA': 19, 'CESAR': 20, 'CHOCO': 27, 'CORDOBA': 23, 'CUNDINAMARCA': 25, 'GUAINIA': 94, 'GUAVIARE': 95, 'HUILA': 41, 'LA GUAJIRA': 44, 'MAGDALENA': 47, 'META': 50, 'NARIÑO': 52, 'NORTE SANTANDER': 54, 'PUTUMAYO': 86, 'QUINDIO': 63, 'RISARALDA': 66, 'SANTANDER': 68, 'SUCRE': 70, 'TOLIMA': 73, 'VALLE': 76, 'VAUPES': 97, 'VICHADA': 99, 'SAN ANDRES': 88], 
     'ESTU_DEDICACIONINTERNET':['30 minutos o menos': 0, 'Entre 1 y 3 horas': 1, 'Entre 30 y 60 minutos': 2, 'Más de 3 horas': 3, 'No Navega Internet': 4],
     'ESTU_DEDICACIONLECTURADIARIA': ['30 minutos o menos': 0, 'Entre 1 y 2 horas': 1, 'Entre 30 y 60 minutos': 2, 'Más de 2 horas': 3, 'No leo por entretenimiento': 4],
     'ESTU_DEPTO_RESIDE': ['AMAZONAS': 0, 'ANTIOQUIA': 1, 'ARAUCA': 2, 'ATLANTICO': 3, 'BOGOTÁ': 4, 'BOLIVAR': 5, 'BOYACA': 6, 'CALDAS': 7, 'CAQUETA': 8, 'CASANARE': 9, 'CAUCA': 10, 'CESAR': 11, 'CHOCO': 12, 'CORDOBA': 13, 'CUNDINAMARCA': 14, 'GUAINIA': 15, 'GUAVIARE': 16, 'HUILA': 17, 'LA GUAJIRA': 18, 'MAGDALENA': 19, 'META': 20, 'NARIÑO': 21, 'NORTE SANTANDER': 22, 'PUTUMAYO': 23, 'QUINDIO': 24, 'RISARALDA': 25, 'SANTANDER': 26, 'SUCRE': 27, 'TOLIMA': 28, 'VALLE': 29, 'VAUPES': 30, 'VICHADA': 31, 'SAN ANDRES': 32, 'EXTRANJERO': 33],
@@ -99,25 +99,28 @@ category_mapping = {
 }
 
 @app.route('/', methods=['GET', 'POST'])
-def predict():
+def home():
     prediction = None
-    if request.method == 'POST':
-        # Obtener los valores seleccionados por el usuario
-        edad = int(request.form['edad'])
-        features = {}
-        for col in categories.keys():
-            selected_option = request.form.get(col, None)
-            if selected_option is None:
-                return "Todos los campos son obligatorios"
-            mapped_value = category_mapping[col][selected_option]
-            features[col] = mapped_value
-        # Convertir las entradas en el formato necesario para el modelo
-        input_data = pd.DataFrame(features, index=[0])
-        input_data['edad'] = edad  # Añadir la edad al DataFrame
-        # Realizar la predicción
-        prediction = model.predict(input_data)[0]
+    if request.method == "POST":
+        input_data = {}
+        for feature, question in questions.items():
+            if feature == 'EDAD':
+                input_data[feature] = int(request.form[feature])
+            else:
+                input_data[feature] = request.form[question]
+        
+        # Aplicar el mapeo de categorías a valores numéricos
+        for feature in input_data.keys():
+            if feature in category_mapping:
+                input_data[feature] = category_mapping[feature][input_data[feature]]
+        
+        # Convertir los datos del formulario a un DataFrame de Pandas
+        input_df = pd.DataFrame([input_data])
+        
+        # Realizar predicción con el modelo (reemplace esto con su código de predicción)
+        prediction = "Predicción no implementada"
+    
+    return render_template("index.html", questions=questions, prediction=prediction)
 
-    return render_template('index.html', categories=categories, questions=questions, prediction=prediction)
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)

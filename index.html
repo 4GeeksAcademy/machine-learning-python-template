@@ -1,11 +1,32 @@
-<!DOCTYPE hmtl>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <title>Modelo predictivo de puntaje Icfes</title>
+    <meta charset="UTF-8">
+    <title>Predicción puntaje Icfes</title>
 </head>
 <body>
-    <h2>Elige una opción</h2>
+    <h1>Formulario de Predicción</h1>
+    <form action="/" method="post">
+        {% for feature, question in questions.items() %}
+            <div>
+                <label for="{{ feature }}">{{ question }}:</label>
+                {% if feature == 'EDAD' %}
+                    <input type="number" name="{{ feature }}" id="{{ feature }}" required>
+                {% elif feature in category_mapping %}
+                    <select name="{{ feature }}" id="{{ feature }}">
+                        {% for option, value in category_mapping[feature].items() %}
+                            <option value="{{ value }}">{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit">Predecir</button>
+    </form>
 
-    <form
+    {% if prediction is not none %}
+        <h2>Predicción: {{ prediction }}</h2>
+    {% endif %}
 </body>
 </html>
+

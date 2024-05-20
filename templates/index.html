@@ -27,7 +27,7 @@
         {% endfor %}
         <button type="submit">Predecir</button>
     </form>
-    {% if prediction is not none %}
+    {% if prediction is not None %}
         <h2>Predicción del PUNTAJE GLOBAL: {{ prediction }}</h2>
     {% endif %}
     <a href="/original_data_csv">Descargar datos originales CSV</a>

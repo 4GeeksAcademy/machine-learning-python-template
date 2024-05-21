@@ -45,3 +45,7 @@ Traceback (most recent call last):
   File "/workspaces/proyecto_final_icfes_definitivo/templates/index.html", line 67, in top-level template code
     {% if prediction is not None %}
 jinja2.exceptions.TemplateRuntimeError: No test named 'None' found.
+[2024-05-21 17:52:22 +0000] [27558] [INFO] Handling signal: hup
+[2024-05-21 17:52:22 +0000] [27558] [INFO] Hang up: Master
+[2024-05-21 17:52:22 +0000] [27558] [ERROR] Worker (pid:27570) was sent SIGHUP!
+[2024-05-21 17:52:22 +0000] [44352] [INFO] Booting worker with pid: 44352

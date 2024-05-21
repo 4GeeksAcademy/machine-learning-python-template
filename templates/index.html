@@ -5,45 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Predicción de puntaje Icfes</title>
     <style>
+        h1 {
+            text-align: center;
+            color: #fff;
+            font-size: 50px;
+        }
         body {
-            font-family: Arial, sans-serif;
+            font-family: Helvetica, sans-serif;
             margin: 40px;
-            background-color: #f4f4f4;
+            background-color: #467F93;
         }
         form {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
         }
-        input[type="number"] {
-            width: 100%;
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 95%;
             padding: 10px;
             margin: 10px 0;
             border-radius: 4px;
             border: 1px solid #ccc;
         }
-        input[type="submit"] {
+        button[type="submit"] {
             background-color: #333;
             color: #fff;
             padding: 10px 15px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            display: block;
+            margin: 20px auto 10px;
         }
-        input[type="submit"]:hover {
+        button[type="submit"]:hover {
             background-color: #555;
         }
-        h3 {
+        h2 {
             margin-top: 20px;
             background-color: #fff;
+            color: #000;
             padding: 10px;
             border-radius: 4px;
+            text-align: center;
+            font-size: 35px
         }
     </style>
 </head>
 <body>
-    <h1>Formulario de Predicción</h1>
+    <h1>Formulario de Predicción puntaje ICFES</h1>
     <form action="/" method="post">
         {% for feature, question in questions.items() %}
             <div>
@@ -64,10 +78,13 @@
         {% endfor %}
         <button type="submit">Predecir</button>
     </form>
-    {% if prediction is not None %}
-        <h2>Predicción del PUNTAJE GLOBAL: {{ prediction }}</h2>
+    {% if prediction is not none %}
+        <h2>TU PUNTAJE ES: {{ prediction }}</h2>
     {% endif %}
     <a href="/original_data_csv">Descargar datos originales CSV</a>
     <a href="/numeric_data_csv">Descargar datos numéricos CSV</a>
 </body>
 </html>
+
+</html>
+

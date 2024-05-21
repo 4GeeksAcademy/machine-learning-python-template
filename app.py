@@ -81,8 +81,8 @@ questions = {
     'EDAD': '¿Que edad tiene?', 
     'ESTU_COD_DEPTO_PRESENTACION': '¿En que departamento presentó la prueba?', 
     'ESTU_DEDICACIONINTERNET': '¿Cuanto tiempo pasa en internet?',
-    'ESTU_DEDICACIONLECTURADIARIA': 'Cuanto tiempo le dedica a la lectura diariamente?',
-    'ESTU_DEPTO_RESIDE': 'En que departamento reside?',
+    'ESTU_DEDICACIONLECTURADIARIA': '¿Cuanto tiempo le dedica a la lectura diariamente?',
+    'ESTU_DEPTO_RESIDE': '¿En que departamento reside?',
     'ESTU_HORASSEMANATRABAJA': '¿Trabaja?, ¿Por cuantas horas?',
     'ESTU_TIPOREMUNERACION': 'Si trabaja, ¿Como le pagan?',
     'FAMI_COMECARNEPESCADOHUEVO': '¿Cuantas veces a la semana come carne, pescado y/o huevo?',
@@ -94,15 +94,14 @@ questions = {
     'FAMI_ESTRATOVIVIENDA': '¿Cual es su estrato?',
     'FAMI_NUMLIBROS': '¿Cuantos libros tiene?',
     'FAMI_PERSONASHOGAR': '¿Cuantas personas viven con usted?',
-    'FAMI_SITUACIONECONOMICA': 'En comparación con el año anterior, como esta la economia familiar hoy?',
+    'FAMI_SITUACIONECONOMICA': 'En comparación con el año anterior, ¿como esta la economia familiar hoy?',
     'FAMI_TRABAJOLABORMADRE': '¿Mamá tiene empleo?, ¿Cual?',
     'FAMI_TRABAJOLABORPADRE': '¿Papá tiene empleo?, ¿Cual?',
     'ESTU_GENERO': '¿Con que género biologico nacio?',
     'FAMI_TIENEINTERNET': '¿Tiene internet?',
     'FAMI_TIENECOMPUTADOR': '¿Tiene computador?',
     'FAMI_TIENEHORNOMICROOGAS': '¿Tiene horno, microondas y/o estufa a gas?',
-    'FAMI_TIENEMOTOCICLETA': '¿Tiene moto?',
-    'PUNT_GLOBAL': None
+    'FAMI_TIENEMOTOCICLETA': '¿Tiene moto?'
 }
 
 answer_mapping = {

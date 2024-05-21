@@ -5,3 +5,16 @@
 [2024-05-20 23:48:10 +0000] [13221] [INFO] Booting worker with pid: 13221
 [2024-05-20 23:48:10 +0000] [13223] [INFO] Booting worker with pid: 13223
 [2024-05-20 23:48:10 +0000] [13224] [INFO] Booting worker with pid: 13224
+[2024-05-21 00:22:42 +0000] [13208] [ERROR] Worker (pid:13221) was sent SIGHUP!
+[2024-05-21 00:22:42 +0000] [23447] [INFO] Booting worker with pid: 23447
+[2024-05-21 00:22:42 +0000] [13208] [INFO] Handling signal: hup
+[2024-05-21 00:22:42 +0000] [13208] [INFO] Hang up: Master
+[2024-05-21 00:22:42 +0000] [13208] [ERROR] Worker (pid:13224) was sent SIGHUP!
+[2024-05-21 00:22:42 +0000] [23448] [INFO] Booting worker with pid: 23448
+[2024-05-21 00:22:42 +0000] [23450] [INFO] Booting worker with pid: 23450
+[2024-05-21 00:22:42 +0000] [23449] [INFO] Booting worker with pid: 23449
+[2024-05-21 00:22:42 +0000] [13208] [ERROR] Worker (pid:13223) was sent SIGHUP!
+[2024-05-21 00:22:42 +0000] [13208] [ERROR] Worker (pid:13220) was sent SIGHUP!
+[2024-05-21 00:22:42 +0000] [23451] [INFO] Booting worker with pid: 23451
+[2024-05-21 00:22:47 +0000] [23447] [INFO] Worker exiting (pid: 23447)
+[2024-05-21 00:22:47 +0000] [13208] [ERROR] Worker (pid:23447) was sent SIGTERM!

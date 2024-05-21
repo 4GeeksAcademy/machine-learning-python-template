@@ -34,7 +34,7 @@ def result():
     selected_model_object = models[selected_model]
 
     # Load necessary data based on the selected model
-    data_dir = os.path.join(os.path.dirname(__file__), 'data/processed/')
+    data_dir = os.path.join(os.path.dirname(__file__), 'data/')
     if selected_model == 'Electric Ford Model':
         data_file_path = os.path.join(data_dir, 'sorted_electric_ford.csv')
     elif selected_model == 'Electric Hyundai Model':
@@ -57,14 +57,24 @@ def result():
     # Generate visualization for the selected model
     if selected_model == 'Gasoline Toyota Model':
         plot_url = generate_visualization(selected_model_object, data)
+    elif selected_model == 'Gasoline Ford Model':
+        plot_url = generate_visualization(selected_model_object, data)
+    elif selected_model == 'Gasoline Chevrolet Model':
+        plot_url = generate_visualization(selected_model_object, data)    
+    elif selected_model == 'Electric Tesla Model':
+        plot_url = generate_visualization(selected_model_object, data)  
+    elif selected_model == 'Electric Hyundai Model':
+        plot_url = generate_visualization(selected_model_object, data)
+    elif selected_model == 'Electric Ford Model':
+        plot_url = generate_visualization(selected_model_object, data)       
     else:
         plot_url = generate_dummy_visualization(selected_model)
 
     return render_template('index.html', models=models.keys(), error_message='Selected model not recognized')
 
-def generate_visualization(model, data_file_path):
-    df = pd.read_csv(data_file_path)
-
+def generate_visualization(selected_model, data):
+    df = data
+    #print(data)
     train_size = int(len(df) * 0.8)
     train, test = df[:train_size], df[train_size:]
 
@@ -74,7 +84,7 @@ def generate_visualization(model, data_file_path):
     # test_stationarity(train_diff)
 
     forecast_steps = len(test)
-    forecast, conf_int = model.predict(n_periods=forecast_steps, return_conf_int=True)
+    forecast, conf_int = selected_model.predict(n_periods=forecast_steps, return_conf_int=True)
 
     # Calculate RMSE
     rmse = sqrt(mean_squared_error(test, forecast))

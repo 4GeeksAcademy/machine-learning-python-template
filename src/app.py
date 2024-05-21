@@ -34,22 +34,22 @@ def result():
     selected_model_object = models[selected_model]
 
     # Load necessary data based on the selected model
-    data_dir = os.path.join(os.path.dirname(__file__), '../data/processed/')
+    data_dir = os.path.join(os.path.dirname(__file__), 'data/processed/')
     if selected_model == 'Electric Ford Model':
-        data_file_path = os.path.join(data_dir, 'electric_ford_data.csv')
+        data_file_path = os.path.join(data_dir, 'sorted_electric_ford.csv')
     elif selected_model == 'Electric Hyundai Model':
-        data_file_path = os.path.join(data_dir, 'electric_hyundai_data.csv')
+        data_file_path = os.path.join(data_dir, 'sorted_electric_hyundai.csv')
     elif selected_model == 'Electric Tesla Model':
-        data_file_path = os.path.join(data_dir, 'electric_tesla_data.csv')
+        data_file_path = os.path.join(data_dir, 'sorted_electric_tesla.csv')
     elif selected_model == 'Gasoline Chevrolet Model':
-        data_file_path = os.path.join(data_dir, 'gasoline_chevrolet_data.csv')
+        data_file_path = os.path.join(data_dir, 'sorted_gasoline_chevrolet.csv')
     elif selected_model == 'Gasoline Ford Model':
-        data_file_path = os.path.join(data_dir, 'gasoline_ford_data.csv')
+        data_file_path = os.path.join(data_dir, 'sorted_gasoline_ford.csv')
     elif selected_model == 'Gasoline Toyota Model':
-        data_file_path = os.path.join(data_dir, 'gasoline_toyota_data.csv')
+        data_file_path = os.path.join(data_dir, 'sorted_gasoline_toyota.csv')
     else:
         # Handle the case when the selected model is not recognized
-        return render_template('index.html', error_message='Selected model not recognized')
+        return render_template('index.html', models=models.keys(), error_message='Selected model not recognized')
 
     # Load data for the selected model
     data = pd.read_csv(data_file_path)
@@ -58,9 +58,9 @@ def result():
     if selected_model == 'Gasoline Toyota Model':
         plot_url = generate_visualization(selected_model_object, data)
     else:
-        plot_url = generate_dummy_visualization(selected_model, data)
+        plot_url = generate_dummy_visualization(selected_model)
 
-    return render_template('index.html', models=models.keys(), plot_url=plot_url, selected_model=selected_model)
+    return render_template('index.html', models=models.keys(), error_message='Selected model not recognized')
 
 def generate_visualization(model, data_file_path):
     df = pd.read_csv(data_file_path)
@@ -92,7 +92,7 @@ def generate_visualization(model, data_file_path):
     ax.plot(test_series.index, test_series, color='orange', label='Test')
     ax.plot(forecast_series.index, forecast_series, color='red', linestyle='--', label='Forecast')
     ax.fill_between(test.index, conf_int[:, 0], conf_int[:, 1], color='pink', alpha=0.3, label='Confidence Interval')
-    ax.set_title('{selected_models} ARIMA Forecast vs Actual')
+    ax.set_title(f'{selected_model} ARIMA Forecast vs Actual')
     ax.set_xlabel('Year')
     ax.set_ylabel('Avg City MPG')
     ax.legend()
@@ -102,6 +102,7 @@ def generate_visualization(model, data_file_path):
     img.seek(0)
     plot_url = base64.b64encode(img.getvalue()).decode()
     plt.close(fig)  # Close the figure to free up memory
+    plt.close('all')
 
     return f'data:image/png;base64,{plot_url}'
 

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Model Selector</title>
+</head>
+<body>
+    <h1>Select a Model</h1>
+    <form method="post" action="/result">
+        <label for="model">Choose a model:</label>
+        <select name="model" id="model">
+            {% for model in models %}
+                <option value="{{ model }}" {% if selected_model == model %}selected{% endif %}>{{ model }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if plot_url %}
+        <h2>Visualization:</h2>
+        <img src="{{ plot_url }}" alt="Model Visualization">
+    {% endif %}
+</body>
+</html>

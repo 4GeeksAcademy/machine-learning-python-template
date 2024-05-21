@@ -6,7 +6,7 @@ import zipfile
 
 app = Flask(__name__)
 
-zip_path = '/workspaces/proyecto_final_icfes_definitivo/random_forest_classifier_default_42.zip'
+zip_path = '/workspaces/proyecto_icfes_final/random_forest_classifier_default_42.zip'
 
 # Nombre del archivo del modelo dentro del ZIP
 model_filename = 'random_forest_classifier_default_42.sav'
@@ -45,7 +45,6 @@ categories = (
     'FAMI_TIENECOMPUTADOR', 
     'FAMI_TIENEHORNOMICROOGAS', 
     'FAMI_TIENEMOTOCICLETA'
-    'PUNT_GLOBAL'
 )
 
 # Definir las respuestas

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de puntaje Icfes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+        h3 {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulario de Predicción</h1>
+    <form action="/" method="post">
+        {% for feature, question in questions.items() %}
+            <div>
+                <label for="{{ feature }}">{{ question }}:</label>
+                {% if feature == 'EDAD' %}
+                    <input type="number" name="{{ feature }}" id="{{ feature }}" required>
+                {% elif feature in answers %}
+                    <select name="{{ feature }}" id="{{ feature }}" required>
+                        <option value="">Selecciona una opción</option>
+                        {% for option in answers[feature] %}
+                            <option value="{{ option }}">{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                {% else %}
+                    <input type="text" name="{{ feature }}" id="{{ feature }}" required>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit">Predecir</button>
+    </form>
+    {% if prediction is not None %}
+        <h2>Predicción del PUNTAJE GLOBAL: {{ prediction }}</h2>
+    {% endif %}
+    <a href="/original_data_csv">Descargar datos originales CSV</a>
+    <a href="/numeric_data_csv">Descargar datos numéricos CSV</a>
+</body>
+</html>

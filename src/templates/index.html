@@ -3,14 +3,124 @@
 <head>
     <title>Time Series Forecasting of City MPG for Different Vehicle Segments</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            color: #444;
+        }
+
+        form {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        select, input[type="number"], input[type="radio"] {
+            margin-bottom: 20px;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        #steps_input {
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+
+        .forecast-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .forecast-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .forecast-img {
+            max-width: 40%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-left: 20px;
+        }
+
+        .logo-img {
+            max-width: 250px;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                padding: 15px;
+            }
+
+            label, input[type="submit"] {
+                font-size: 14px;
+            }
+
+            .forecast-img {
+                width: 40%;
+            }
+
+            .logo-img {
+                max-width: 250px;
+                margin-right: 10px;
+            }
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Retrieve previously selected values from hidden fields
             var prevVehicleType = document.getElementById('prev_vehicle_type').value;
             var prevForecastType = document.getElementById('prev_forecast_type').value;
             var prevNumSteps = document.getElementById('prev_num_steps').value;
 
-            // Set the selected values for the dropdown and radio buttons
             document.getElementById('vehicle_type').value = prevVehicleType;
             document.querySelector('input[name="forecast_type"][value="' + prevForecastType + '"]').checked = true;
             if (prevForecastType === 'steps') {
@@ -34,45 +144,41 @@
     <h2>Time Series Forecasting of City MPG for Different Vehicle Segments</h2>
 
     <form method="POST" action="/" oninput="toggleStepsInput()">
-        <label for="vehicle_type">Select Vehicle Type and Manafacturer:</label>
+        <label for="vehicle_type">Select Vehicle Type and Manufacturer:</label>
         <select id="vehicle_type" name="vehicle_type">
             <option value="gasolineford">Gasoline - Ford</option>
             <option value="gasolinechevrolet">Gasoline - Chevrolet</option>
             <option value="gasolinetoyota">Gasoline - Toyota</option>
-            <option value="electrictesla">Electricity -  Tesla</option>
-            <option value="electricford">Electricity -  Ford</option>
-            <option value="electrichyundai">Electricity -  Hyundai</option>
+            <option value="electrictesla">Electricity - Tesla</option>
+            <option value="electricford">Electricity - Ford</option>
+            <option value="electrichyundai">Electricity - Hyundai</option>
         </select>
-
-      
-
-        <br><br>
 
         <label for="forecast_type">Select Forecast Type:</label>
         <input type="radio" id="forecast_vs_actual" name="forecast_type" value="forecast_vs_actual"> ARIMA Forecast vs Actual
         <input type="radio" id="steps" name="forecast_type" value="steps"> Forecast up to specified steps
-
-        <br><br>
 
         <div id="steps_input" style="display: none;">
             <label for="num_steps">Number of steps (1-30):</label>
             <input type="number" id="num_steps" name="num_steps" min="1" max="10">
         </div>
 
-        <br>
-
         <input type="submit" value="Submit">
 
-        <!-- Hidden fields to store previously selected values -->
         <input type="hidden" id="prev_vehicle_type" name="prev_vehicle_type" value="{{ vehicle_type }}">
         <input type="hidden" id="prev_forecast_type" name="prev_forecast_type" value="{{ forecast_type }}">
         <input type="hidden" id="prev_num_steps" name="prev_num_steps" value="{{ num_steps }}">
     </form>
 
-    {% if image_path %}
-        <br>
-        <img src="{{ image_path }}" alt="Forecast Image" class="forecast-img" style="width:900px; height:auto;">
-    {% endif %}
-
+    <div class="forecast-container">
+        <div class="forecast-content">
+            {% if logo_path %}
+                <img src="{{ url_for('static', filename=logo_path) }}" alt="Logo" class="logo-img">
+            {% endif %}
+            {% if image_path %}
+                <img src="{{ image_path }}" alt="Forecast Image" class="forecast-img">
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>

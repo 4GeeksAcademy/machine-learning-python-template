@@ -1,24 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Model Selector</title>
+    <title>Time Series Forecasting of City MPG for Different Vehicle Segments</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve previously selected values from hidden fields
+            var prevVehicleType = document.getElementById('prev_vehicle_type').value;
+            var prevForecastType = document.getElementById('prev_forecast_type').value;
+            var prevNumSteps = document.getElementById('prev_num_steps').value;
+
+            // Set the selected values for the dropdown and radio buttons
+            document.getElementById('vehicle_type').value = prevVehicleType;
+            document.querySelector('input[name="forecast_type"][value="' + prevForecastType + '"]').checked = true;
+            if (prevForecastType === 'steps') {
+                document.getElementById('steps_input').style.display = 'block';
+                document.getElementById('num_steps').value = prevNumSteps;
+            }
+        });
+
+        function toggleStepsInput() {
+            var forecastType = document.querySelector('input[name="forecast_type"]:checked').value;
+            var stepsInput = document.getElementById('steps_input');
+            if (forecastType === 'steps') {
+                stepsInput.style.display = 'block';
+            } else {
+                stepsInput.style.display = 'none';
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>Select a Model</h1>
-    <form method="post" action="/result">
-        <label for="model">Choose a model:</label>
-        <select name="model" id="model">
-            {% for model in models %}
-                <option value="{{ model }}" {% if selected_model == model %}selected{% endif %}>{{ model }}</option>
-            {% endfor %}
+    <h2>Time Series Forecasting of City MPG for Different Vehicle Segments</h2>
+
+    <form method="POST" action="/" oninput="toggleStepsInput()">
+        <label for="vehicle_type">Select Vehicle Type and Manafacturer:</label>
+        <select id="vehicle_type" name="vehicle_type">
+            <option value="gasolineford">Gasoline - Ford</option>
+            <option value="gasolinechevrolet">Gasoline - Chevrolet</option>
+            <option value="gasolinetoyota">Gasoline - Toyota</option>
+            <option value="electrictesla">Electricity -  Tesla</option>
+            <option value="electricford">Electricity -  Ford</option>
+            <option value="electrichyundai">Electricity -  Hyundai</option>
         </select>
+
+      
+
+        <br><br>
+
+        <label for="forecast_type">Select Forecast Type:</label>
+        <input type="radio" id="forecast_vs_actual" name="forecast_type" value="forecast_vs_actual"> ARIMA Forecast vs Actual
+        <input type="radio" id="steps" name="forecast_type" value="steps"> Forecast up to specified steps
+
+        <br><br>
+
+        <div id="steps_input" style="display: none;">
+            <label for="num_steps">Number of steps (1-30):</label>
+            <input type="number" id="num_steps" name="num_steps" min="1" max="10">
+        </div>
+
+        <br>
+
         <input type="submit" value="Submit">
+
+        <!-- Hidden fields to store previously selected values -->
+        <input type="hidden" id="prev_vehicle_type" name="prev_vehicle_type" value="{{ vehicle_type }}">
+        <input type="hidden" id="prev_forecast_type" name="prev_forecast_type" value="{{ forecast_type }}">
+        <input type="hidden" id="prev_num_steps" name="prev_num_steps" value="{{ num_steps }}">
     </form>
 
-    {% if plot_url %}
-        <h2>Visualization:</h2>
-        <img src="{{ plot_url }}" alt="Model Visualization">
+    {% if image_path %}
+        <br>
+        <img src="{{ image_path }}" alt="Forecast Image" class="forecast-img" style="width:900px; height:auto;">
     {% endif %}
+
 </body>
 </html>

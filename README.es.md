@@ -7,7 +7,7 @@ Esta plantilla está diseñada para impulsar proyectos de ciencia de datos propo
 El proyecto está organizado de la siguiente manera:
 
 - `app.py` - El script principal de Python que ejecutas para tu proyecto.
-- `explore.py` - Un notebook para que puedas hacer tus exploraciones, idealmente el codigo de este notebook se migra hacia app.py para subir a produccion.
+- `explore.py` - Un notebook para que puedas hacer tus exploraciones, idealmente el código de este notebook se migra hacia app.py para subir a producción.
 - `utils.py` - Este archivo contiene código de utilidad para operaciones como conexiones de base de datos.
 - `requirements.txt` - Este archivo contiene la lista de paquetes de Python necesarios.
 - `models/` - Este directorio debería contener tus clases de modelos SQLAlchemy.

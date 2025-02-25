@@ -4,7 +4,7 @@ This boilerplate is designed to kickstart data science projects by providing a b
 
 ## Structure
 
-The project is organized as follows:
+The project is organized as follows: -- 
 
 - `app.py` - The main Python script that you run for your project.
 - `explore.py` - A notebook to explore data, play around, visualize, clean, etc. Ideally the notebook code should be migrated to the app.py when moving to production.

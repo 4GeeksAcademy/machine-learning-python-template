@@ -8,17 +8,15 @@
 	"customizations": {
 	  "vscode": {
 		"extensions": [
-		  "ms-toolsai.jupyter",
 		  "ms-python.python",
 		  "streetsidesoftware.code-spell-checker"
 		]
 	  }
-	}
+	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "pip3 install --user -r requirements.txt",
-
+	"postCreateCommand": "mkdir data && mkdir data/raw && mkdir data/interim && mkdir data/processed && mkdir models"
 }

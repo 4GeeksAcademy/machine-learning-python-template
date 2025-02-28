@@ -10,6 +10,7 @@
 		"extensions": [
 		  "-dbaeumer.vscode-eslint",
 		  "ms-python.python",
+		  "ms-toolsai.jupyter",
 		  "streetsidesoftware.code-spell-checker"
 		]
 	  }

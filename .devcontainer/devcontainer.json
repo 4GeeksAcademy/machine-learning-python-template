@@ -8,6 +8,7 @@
 	"customizations": {
 	  "vscode": {
 		"extensions": [
+		  "-dbaeumer.vscode-eslint",
 		  "ms-python.python",
 		  "streetsidesoftware.code-spell-checker"
 		]

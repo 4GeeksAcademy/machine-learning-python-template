@@ -6,17 +6,28 @@ Esta plantilla está diseñada para impulsar proyectos de ciencia de datos propo
 
 El proyecto está organizado de la siguiente manera:
 
-- `app.py` - El script principal de Python que ejecutas para tu proyecto.
-- `explore.py` - Un notebook para que puedas hacer tus exploraciones, idealmente el codigo de este notebook se migra hacia app.py para subir a produccion.
-- `utils.py` - Este archivo contiene código de utilidad para operaciones como conexiones de base de datos.
-- `requirements.txt` - Este archivo contiene la lista de paquetes de Python necesarios.
-- `models/` - Este directorio debería contener tus clases de modelos SQLAlchemy.
-- `data/` - Este directorio contiene los siguientes subdirectorios:
-  - `interim/` - Para datos intermedios que han sido transformados.
-  - `processed/` - Para los datos finales a utilizar para el modelado.
-  - `raw/` - Para datos brutos sin ningún procesamiento.
+- **`src/app.py`** → Script principal de Python donde correrá tu proyecto.
+- **`src/explore.ipynb`** → Notebook para exploración y pruebas. Una vez finalizada la exploración, migra el código limpio a `app.py`.
+- **`src/utils.py`** → Funciones auxiliares, como conexión a bases de datos.
+- **`requirements.txt`** → Lista de paquetes de Python necesarios.
+- **`models/`** → Contendrá tus clases de modelos SQLAlchemy.
+- **`data/`** → Almacena los datasets en diferentes etapas:
+  - **`data/raw/`** → Datos sin procesar.
+  - **`data/interim/`** → Datos transformados temporalmente.
+  - **`data/processed/`** → Datos listos para análisis.
 
-## Configuración
+
+## ⚡ Configuración Inicial en Codespaces (Recomendado)
+
+No es necesario realizar ninguna configuración manual, ya que **Codespaces se configura automáticamente** con los archivos predefinidos que ha creado la academia para ti. Simplemente sigue estos pasos:
+
+1. **Espera a que el entorno se configure automáticamente**.
+   - Todos los paquetes necesarios y la base de datos se instalarán por sí mismos.
+   - El `username` y `db_name` creados automáticamente están en el archivo **`.env`** en la raíz del proyecto.
+2. **Una vez que Codespaces esté listo, puedes comenzar a trabajar inmediatamente**.
+
+
+## 💻 Configuración en Local (Solo si no puedes usar Codespaces)
 
 **Prerrequisitos**
 
@@ -34,9 +45,19 @@ pip install -r requirements.txt
 
 **Crear una base de datos (si es necesario)**
 
-Crea una nueva base de datos dentro del motor Postgres personalizando y ejecutando el siguiente comando: `$ createdb -h localhost -U <username> <db_name>`
-Conéctate al motor Postgres para usar tu base de datos, manipular tablas y datos: `$ psql -h localhost -U <username> <db_name>`
-NOTA: Recuerda revisar la información del archivo ./.env para obtener el nombre de usuario y db_name.
+Crea una nueva base de datos dentro del motor Postgres personalizando y ejecutando el siguiente comando: 
+
+```bash
+$ psql -U postgres -c "DO \$\$ BEGIN 
+    CREATE USER mi_usuario WITH PASSWORD 'mi_contraseña'; 
+    CREATE DATABASE mi_base_de_datos OWNER mi_usuario; 
+END \$\$;"
+```
+Conéctate al motor Postgres para usar tu base de datos, manipular tablas y datos: 
+
+```bash
+$ psql -U mi_usuario -d mi_base_de_datos
+```
 
 ¡Una vez que estés dentro de PSQL podrás crear tablas, hacer consultas, insertar, actualizar o eliminar datos y mucho más!
 
@@ -45,7 +66,10 @@ NOTA: Recuerda revisar la información del archivo ./.env para obtener el nombre
 Crea un archivo .env en el directorio raíz del proyecto para almacenar tus variables de entorno, como tu cadena de conexión a la base de datos:
 
 ```makefile
-DATABASE_URL="your_database_connection_url_here"
+DATABASE_URL="postgresql://<USUARIO>:<CONTRASEÑA>@<HOST>:<PUERTO>/<NOMBRE_BD>"
+
+#example
+DATABASE_URL="postgresql://mi_usuario:mi_contraseña@localhost:5432/mi_base_de_datos"
 ```
 
 ## Ejecutando la Aplicación
@@ -53,7 +77,7 @@ DATABASE_URL="your_database_connection_url_here"
 Para ejecutar la aplicación, ejecuta el script app.py desde la raíz del directorio del proyecto:
 
 ```bash
-python app.py
+python src/app.py
 ```
 
 ## Añadiendo Modelos
@@ -63,16 +87,16 @@ Para añadir clases de modelos SQLAlchemy, crea nuevos archivos de script de Pyt
 Definición del modelo de ejemplo (`models/example_model.py`):
 
 ```py
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy import String
+from sqlalchemy.orm import Mapped, mapped_column
 
 Base = declarative_base()
 
 class ExampleModel(Base):
     __tablename__ = 'example_table'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-
+    id: Mapped[int] = mapped_column(primary_key=True)
+    username: Mapped[str] = mapped_column(unique=True)
 ```
 
 ## Trabajando con Datos

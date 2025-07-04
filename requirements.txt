@@ -13,3 +13,9 @@ seaborn>=0.12.2
 sqlalchemy>=2.0.38
 sympy>=1.10.1
 xgboost
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+joblib

@@ -5,7 +5,7 @@
   },
   "description": {
     "us": "A standardized, but flexible project structure for doing and sharing data science and machine learning work.",
-    "es": "Una estructura de proyecto estandarizada, pero flexible, para realizar y compartir trabajos de ciencia de datos y aprendizaje automático."
+    "es": "Una estructura de proyecto estandarizada, pero flexible, para realizar y compartir trabajos de ciencia de datos y aprendizaje de máquina."
   },
   "repository": "https://github.com/4GeeksAcademy/machine-learning-python-template",
   "preview": "https://github.com/4GeeksAcademy/machine-learning-python-template/blob/main/preview.jpg?raw=true",

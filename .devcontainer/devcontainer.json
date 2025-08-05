@@ -1,13 +1,16 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
-	"name": "Python 3",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"name": "Python 3.11",
 	"image": "mcr.microsoft.com/devcontainers/python:0-3.11",
-	"onCreateCommand": "pip3 install --upgrade pip && pip3 install --user -r requirements.txt",
+	"onCreateCommand": "sudo apt update && sudo apt upgrade -y && pip3 install --upgrade pip && pip3 install --user -r requirements.txt",
 	"customizations": {
 	  "vscode": {
-		"settings": {"jupyter.kernels.excludePythonEnvironments": ["/usr/bin/python3"]},
+		"settings": {
+			"jupyter.kernels.excludePythonEnvironments": ["/usr/bin/python3"],
+			"remote.autoForwardPorts": false,
+			"remote.restoreForwardedPorts": false
+		},
 		"extensions": [
 		  "-dbaeumer.vscode-eslint",
 		  "ms-python.python",
@@ -17,9 +20,7 @@
 	  }
 	},
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "mkdir data && mkdir data/raw && mkdir data/interim && mkdir data/processed && mkdir models"
+	"postCreateCommand": "mkdir -p data && mkdir -p models",
+	"postAttachCommand": "htop"
 }

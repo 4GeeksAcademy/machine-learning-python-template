@@ -1,12 +1,12 @@
 # Data Science Project Boilerplate
 
-This boilerplate is designed to kickstart data science projects by providing a basic setup for database connections, data processing, and machine learning model development. It includes a structured folder organization for your datasets and a set of pre-defined Python packages necessary for most data science tasks.
+ A simple Machine Learning project for training and testing models This boilerplate is designed to kickstart data science projects by providing a basic setup for database connections, data processing, and machine learning model development. It includes a structured folder organization for your datasets and a set of pre-defined Python packages necessary for most data science tasks.
 
 ## Structure
 
 The project is organized as follows:
 
-- **`src/app.py`** → Main Python script where your project will run.
+- **`src/app.py`** → Main Python script where your project will run. 
 - **`src/explore.ipynb`** → Notebook for exploration and testing. Once exploration is complete, migrate the clean code to `app.py`.
 - **`src/utils.py`** → Auxiliary functions, such as database connection.
 - **`requirements.txt`** → List of required Python packages.

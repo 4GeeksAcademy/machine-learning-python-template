@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación de Predicción</title>
+    <!-- Incluye el CDN de Tailwind CSS para un estilo rápido y moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full mx-4">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Predictor de Especies</h1>
+            <p class="text-gray-600 mb-6">Introduce los datos para obtener una predicción.</p>
+        </div>
+        
+        <!-- Formulario para la entrada de datos -->
+        <form action="/" method="post" class="space-y-4">
+            
+            <!-- Campo de entrada para 'length' -->
+            <div>
+                <label for="length" class="block text-sm font-medium text-gray-700">Longitud (cm)</label>
+                <input type="number" id="length" name="length" placeholder="Ej: 20" step="0.5" required
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            </div>
+
+            <!-- Campo de entrada para 'weight' -->
+            <div>
+                <label for="weight" class="block text-sm font-medium text-gray-700">Peso (kg)</label>
+                <input type="number" id="weight" name="weight" placeholder="Ej: 150" step="0.5" required
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            </div>
+
+            <!-- Selector para 'age_class' -->
+            <div>
+                <label for="age_class" class="block text-sm font-medium text-gray-700">Clase de Edad</label>
+                <select id="age_class" name="age_class" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <option value="" disabled selected>Seleccionar clase de edad</option>
+                    <option value="Adult">Adulto</option>
+                    <option value="Hatchling">Cría</option>
+                    <option value="Juvenile">Juvenil</option>
+                    <option value="Subadult">Subadulto</option>
+                </select>
+            </div>
+
+            <!-- Selector para 'sex' -->
+            <div>
+                <label for="sex" class="block text-sm font-medium text-gray-700">Género</label>
+                <select id="sex" name="sex" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <option value="" disabled selected>Seleccionar género</option>
+                    <option value="Female">Femenino</option>
+                    <option value="Male">Masculino</option>
+                    <option value="Unknown">Desconocido</option>
+                </select>
+            </div>
+
+            <!-- Selector para 'habitat_type' -->
+            <div>
+                <label for="habitat_type" class="block text-sm font-medium text-gray-700">Tipo de Hábitat</label>
+                <select id="habitat_type" name="habitat_type" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <option value="" disabled selected>Seleccionar hábitat</option>
+                    <option value="Billabongs">Billabongs</option>
+                    <option value="Brackish Rivers">Ríos de Agua Salobre</option>
+                    <option value="Coastal Lagoons">Lagunas Costeras</option>
+                    <option value="Coastal Wetlands">Humedales Costeros</option>
+                    <option value="Estuaries">Estuarios</option>
+                    <option value="Estuarine Systems">Sistemas Estuarinos</option>
+                    <option value="Flooded Savannas">Sabanas Inundadas</option>
+                    <option value="Forest Rivers">Ríos Forestales</option>
+                    <option value="Forest Swamps">Pantanos Forestales</option>
+                    <option value="Freshwater Marshes">Marismas de Agua Dulce</option>
+                    <option value="Freshwater Rivers">Ríos de Agua Dulce</option>
+                    <option value="Freshwater Wetlands">Humedales de Agua Dulce</option>
+                    <option value="Gorges">Gargantas</option>
+                    <option value="Lagoons">Lagunas</option>
+                    <option value="Lakes">Lagos</option>
+                    <option value="Large Rivers">Grandes Ríos</option>
+                    <option value="Mangroves">Manglares</option>
+                    <option value="Marshes">Marismas</option>
+                    <option value="Oases">Oasis</option>
+                    <option value="Oxbow Lakes">Lagos de Meandro</option>
+                    <option value="Ponds">Estanques</option>
+                    <option value="Reservoirs">Embalses</option>
+                    <option value="Rivers">Ríos</option>
+                    <option value="Shaded Forest Rivers">Ríos Forestales Sombreados</option>
+                    <option value="Slow Rivers">Ríos de Flujo Lento</option>
+                    <option value="Slow Streams">Arroyos de Flujo Lento</option>
+                    <option value="Small Streams">Pequeños Arroyos</option>
+                    <option value="Swamps">Pantanos</option>
+                    <option value="Tidal Rivers">Ríos de Marea</option>
+                </select>
+            </div>
+
+            <!-- Selector para 'country_region' -->
+            <div>
+                <label for="country_region" class="block text-sm font-medium text-gray-700">País/Región</label>
+                <select id="country_region" name="country_region" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <option value="" disabled selected>Seleccionar país/región</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Belize">Belice</option>
+                    <option value="Cambodia">Camboya</option>
+                    <option value="Cameroon">Camerún</option>
+                    <option value="Central African Republic">República Centroafricana</option>
+                    <option value="Chad">Chad</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Congo (DRC)">Congo (RDC)</option>
+                    <option value="Congo Basin Countries">Países de la Cuenca del Congo</option>
+                    <option value="Costa Rica">Costa Rica</option>
+                    <option value="Cuba">Cuba</option>
+                    <option value="Côte d'Ivoire">Costa de Marfil</option>
+                    <option value="Egypt">Egipto</option>
+                    <option value="Gabon">Gabón</option>
+                    <option value="Ghana">Ghana</option>
+                    <option value="Guatemala">Guatemala</option>
+                    <option value="Guinea">Guinea</option>
+                    <option value="India">India</option>
+                    <option value="Indonesia">Indonesia</option>
+                    <option value="Indonesia (Borneo)">Indonesia (Borneo)</option>
+                    <option value="Indonesia (Papua)">Indonesia (Papúa)</option>
+                    <option value="Iran (historic)">Irán (histórico)</option>
+                    <option value="Kenya">Kenia</option>
+                    <option value="Laos">Laos</option>
+                    <option value="Liberia">Liberia</option>
+                    <option value="Malaysia">Malasia</option>
+                    <option value="Malaysia (Borneo)">Malasia (Borneo)</option>
+                    <option value="Mali">Mali</option>
+                    <option value="Mauritania">Mauritania</option>
+                    <option value="Mexico">México</option>
+                    <option value="Nepal">Nepal</option>
+                    <option value="Niger">Níger</option>
+                    <option value="Nigeria">Nigeria</option>
+                    <option value="Pakistan">Pakistán</option>
+                    <option value="Papua New Guinea">Papúa Nueva Guinea</option>
+                    <option value="Philippines">Filipinas</option>
+                    <option value="Senegal">Senegal</option>
+                    <option value="Sierra Leone">Sierra Leona</option>
+                    <option value="South Africa">Sudáfrica</option>
+                    <option value="Sri Lanka">Sri Lanka</option>
+                    <option value="Sudan">Sudán</option>
+                    <option value="Tanzania">Tanzania</option>
+                    <option value="Thailand">Tailandia</option>
+                    <option value="USA (Florida)">EE.UU. (Florida)</option>
+                    <option value="Uganda">Uganda</option>
+                    <option value="Venezuela">Venezuela</option>
+                    <option value="Vietnam">Vietnam</option>
+                </select>
+            </div>
+
+            <!-- Botón de envío del formulario -->
+            <button type="submit"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Predecir
+            </button>
+        </form>
+
+        <!-- Sección para mostrar los resultados de la predicción -->
+        {% if genus and common_name %}
+        <div class="mt-6 p-4 bg-green-50 border-l-4 border-green-400 rounded-md">
+            <h2 class="text-lg font-bold text-green-800">Resultados de la Predicción:</h2>
+            <p class="mt-1 text-sm text-green-700">
+                <span class="font-semibold">Género:</span> {{ genus }}
+            </p>
+            <p class="mt-1 text-sm text-green-700">
+                <span class="font-semibold">Nombre Común:</span> {{ common_name }}
+            </p>
+        </div>
+        {% endif %}
+
+        <!-- Sección para mostrar los errores -->
+        {% if error %}
+        <div class="mt-6 p-4 bg-red-50 border-l-4 border-red-400 rounded-md">
+            <h2 class="text-lg font-bold text-red-800">¡Error!</h2>
+            <p class="mt-1 text-sm text-red-700">{{ error }}</p>
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

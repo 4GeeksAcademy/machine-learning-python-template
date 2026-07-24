@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predicción de Salarios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        select, input[type="submit"] {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .prediction {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Predicción de Salarios</h2>
+        
+        <form action="/" method="post">
+           <label for="trabajo">Trabajo:</label>
+           <select name="val1" id="trabajo" required>
+               <option value="">Selecciona un trabajo</option>
+               <option value="0">AI Engineer</option>
+               <option value="5">Data Analyst</option>
+               <option value="8">Frontend Developer</option>
+               <option value="2">Business Analyst</option>
+               <option value="10">Product Manager</option>
+               <option value="1">Backend Developer</option>
+               <option value="9">Machine Learning Engineer</option>
+               <option value="7">DevOps Engineer</option>
+               <option value="11">Software Engineer</option>
+               <option value="4">Cybersecurity Analyst</option>
+               <option value="6">Data Scientist</option>
+               <option value="3">Cloud Engineer</option>
+           </select><br><br>
+           
+           <label for="experiencia">Años de experiencia:</label>
+           <select name="val2" id="experiencia" required>
+               <option value="">Selecciona años de experiencia</option>
+               {% for i in range(0, 21) %}
+                   <option value="{{ i }}">{{ i }}</option>
+               {% endfor %}
+           </select><br><br>
+           
+           <label for="educacion">Educación:</label>
+           <select name="val3" id="educacion" required>
+               <option value="">Selecciona nivel de educación</option>
+               <option value="2">High School</option>
+               <option value="1">Diploma</option>
+               <option value="0">Bachelor</option>
+               <option value="3">Master</option>
+               <option value="4">PhD</option>
+           </select><br><br>
+           
+           <input type="submit" value="Predecir Salario">
+        </form>
+        
+        {% if prediction %}
+            <div class="prediction">
+                <h3>Predicción: {{ prediction }}</h3>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+

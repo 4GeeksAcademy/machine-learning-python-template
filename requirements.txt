@@ -13,3 +13,5 @@ seaborn>=0.12.2
 sqlalchemy>=2.0.38
 sympy>=1.10.1
 xgboost
+gunicorn>=25.3.0
+Flask==3.1.0

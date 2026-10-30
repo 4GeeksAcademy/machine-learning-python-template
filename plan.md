@@ -12,36 +12,36 @@ Small steps to learn by doing. Finish each step's **Check** before you move on, 
 
 Do these before you write any code. Write your answers in a notebook or a scratch file, in your own words.
 
-- [ ] **Step A — Retell the story.** Read "Your challenge" on the assignment page. Answer:
+- [x] **Step A — Retell the story.** Read "Your challenge" on the assignment page. Answer:
   - Who is the client? *(WeLoveReviews, a company that analyses reviews for businesses)*
   - Who is *their* client? *(a café, Harbor House Café, with a 4.5-star average)*
   - What does the account manager want, in one sentence? *(how many of the 500 reviews read positive / neutral / negative, and whether that matches 4.5 stars)*
   - *Check:* you can explain the project to a friend in 30 seconds.
 
-- [ ] **Step B — Understand why a model is needed at all.** The star rating already exists, so why read the text? Because a person can give 5 stars and still complain in the text. The project measures what people *wrote*, not what they *clicked*.
+- [x] **Step B — Understand why a model is needed at all.** The star rating already exists, so why read the text? Because a person can give 5 stars and still complain in the text. The project measures what people *wrote*, not what they *clicked*.
   - *Check:* you can give one example of a review where the text and the stars disagree.
 
-- [ ] **Step C — Understand the model's job and its weakness.** Read "Model note" on the assignment page and the model card linked below.
+- [x] **Step C — Understand the model's job and its weakness.** Read "Model note" on the assignment page and the model card linked below.
   - Input: one review's text. Output: a guess of 1–5 stars plus a confidence score.
   - Weakness: it learned from **product** reviews ("battery died", "wrong size"). Your reviews are about **service** ("waited 20 minutes", "friendly staff"). It will misread some of them.
   - The project *expects* the model to make mistakes. Finding and explaining them is the assignment, not a failure.
   - *Check:* you can explain what a "false negative" means here (see the Glossary).
 
-- [ ] **Step D — Map the deliverables.** Look at the "Expected file layout" table below and answer: which file tells the *story*, and which one *does the work*?
+- [x] **Step D — Map the deliverables.** Look at the "Expected file layout" table below and answer: which file tells the *story*, and which one *does the work*?
   - `src/explore.ipynb` is the report: a reader follows it from question → data → model → results → conclusions.
   - `src/app.py` is the production script: it runs the model on all reviews and saves a CSV. No analysis.
   - `data/processed/reviews_with_sentiment.csv` is the output that `app.py` writes.
   - *Check:* you can draw the "Data flow" diagram from memory.
 
-- [ ] **Step E — Read the grading list.** Read "What We Will Evaluate" on the assignment page and the "Rules you will be graded on" below. For each rule, write *why* it exists:
+- [x] **Step E — Read the grading list.** Read "What We Will Evaluate" on the assignment page and the "Rules you will be graded on" below. For each rule, write *why* it exists:
   - Load the model once → loading takes seconds and lots of memory, and doing it 500 times is wasteful.
   - Pin the model name and package versions → results stay reproducible for whoever runs it next.
   - Don't commit weights → they are hundreds of MB and Hugging Face already hosts them.
   - Check by hand → models are confidently wrong sometimes, and you have to prove you looked.
 
-- [ ] **Step F — Skim the reference solution once.** Open the solution link below. Don't copy it. Notice its shape: the notebook sections, the `app.py` functions, the false-negative patterns table. Then close it and work from this plan.
+- [x] **Step F — Skim the reference solution once.** Open the solution link below. Don't copy it. Notice its shape: the notebook sections, the `app.py` functions, the false-negative patterns table. Then close it and work from this plan.
 
-- [ ] **Step G — Check your knowledge.** Go through the "Knowledge you need" table below. For any row you can't do yet, spend 15–30 minutes on it before Step 1.
+- [x] **Step G — Check your knowledge.** Go through the "Knowledge you need" table below. For any row you can't do yet, spend 15–30 minutes on it before Step 1.
 
 ### Knowledge you need
 
@@ -120,11 +120,11 @@ data/raw/reviews.csv ──► src/explore.ipynb  (story: EDA, results, false ne
 
 Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown between code cells. Imagine your account manager reading it top to bottom.
 
-- [ ] **Step 1 — Look at the raw data by eye.** Open `data/raw/reviews.csv` and read 10 reviews.
+- [x] **Step 1 — Look at the raw data by eye.** Open `data/raw/reviews.csv` and read 10 reviews.
   - *Learn:* before any code, get a feel for the data. Do the 5-star reviews ever mention complaints?
   - *Check:* you can name the 3 columns and guess roughly what share of ratings are 5s.
 
-- [ ] **Step 2 — Create a virtual environment.**
+- [x] **Step 2 — Create a virtual environment.**
   ```bash
   python -m venv .venv
   # Windows: .venv\Scripts\activate   |   macOS/Linux: source .venv/bin/activate
@@ -133,7 +133,7 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
   - *Note:* you are on Python 3.14. If `torch` fails to install, create the venv with Python 3.12 instead (`py -3.12 -m venv .venv`).
   - *Check:* `python -c "import pandas; print(pandas.__version__)"` works.
 
-- [ ] **Step 3 — Install the model libraries and pin them.**
+- [x] **Step 3 — Install the model libraries and pin them.**
   ```bash
   pip install transformers torch
   pip freeze | grep -iE "^(transformers|torch|pandas)=="
@@ -151,7 +151,7 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
   - *Learn:* the first run downloads the weights to `~/.cache/huggingface`. Later runs reuse them. That cache is outside your repo, which is why you never commit weights.
   - *Check:* you see something like `[{'label': '3 stars', 'score': 0.4...}]`. Try 3–4 sentences of your own. Which ones does it get "wrong"?
 
-- [ ] **Step 5 — Make sure `.gitignore` keeps junk out.** Add `.venv/` and `.ipynb_checkpoints/` if they are missing.
+- [x] **Step 5 — Make sure `.gitignore` keeps junk out.** Add `.venv/` and `.ipynb_checkpoints/` if they are missing.
 
 - [ ] **Step 6 — Title + Objectives markdown cell** at the very top of the notebook:
   - the business question (written sentiment vs the 4.5-star average)

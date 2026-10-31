@@ -166,7 +166,7 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
   - *Pitfall:* typing a path into the *Select Kernel* search box and pressing Enter runs "Create Python Environment". The box only filters the list.
   - *Check:* a cell with `import pandas; pandas.__version__` shows `'3.1.0'` ✔.
 
-- [ ] **Step 6 — Title + Objectives markdown cell** at the very top of the notebook:
+- [x] **Step 6 — Title + Objectives markdown cell** at the very top of the notebook:
   - the business question (written sentiment vs the 4.5-star average)
   - what you will deliver (a sentiment breakdown, a comparison with the rating, false-negative analysis, a manual check, conclusions)
   - the constraint: an existing model, no training

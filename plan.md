@@ -172,7 +172,7 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
   - the constraint: an existing model, no training
   - *Check:* someone who never saw the assignment understands the goal from this cell alone.
 
-- [ ] **Step 7 — Run `PROMPT.md`.** Paste everything below its `---` line into your coding agent. It should fill the EDA section only.
+- [x] **Step 7 — Run `PROMPT.md`.** Paste everything below its `---` line into your coding agent. It should fill the EDA section only.
 
 - [ ] **Step 8 — Read and understand every EDA cell.** For each one, write down what question it answers:
   - shape, dtypes, missing values

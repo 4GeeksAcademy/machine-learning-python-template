@@ -174,24 +174,24 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
 
 - [x] **Step 7 — Run `PROMPT.md`.** Paste everything below its `---` line into your coding agent. It should fill the EDA section only.
 
-- [ ] **Step 8 — Read and understand every EDA cell.** For each one, write down what question it answers:
+- [x] **Step 8 — Read and understand every EDA cell.** For each one, write down what question it answers:
   - shape, dtypes, missing values
   - rating distribution (`df["rating"].value_counts()`) and **mean rating**
   - text length stats (characters/words). Very long reviews matter because BERT truncates at 512 tokens.
   - a few sample texts per rating
 
-- [ ] **Step 9 — Check the mean rating yourself:** `df["rating"].mean()`. Is it ≈ 4.5?
+- [x] **Step 9 — Check the mean rating yourself:** `df["rating"].mean()`. Is it ≈ 4.5?
 
-- [ ] **Step 10 — Write the insights cell** (3–5 bullets). Example: *"Most ratings are 5, but several 5-star reviews mention waits or staff attitude, so the model may read those as negative."*
+- [x] **Step 10 — Write the insights cell** (3–5 bullets). Example: *"Most ratings are 5, but several 5-star reviews mention waits or staff attitude, so the model may read those as negative."*
 
-- [ ] **Step 11 — Cleaning decision cell.** Say what you clean (strip whitespace, drop empty or duplicate texts) or why nothing is needed.
+- [x] **Step 11 — Cleaning decision cell.** Say what you clean (strip whitespace, drop empty or duplicate texts) or why nothing is needed.
   - *Check:* you still have 500 rows. If you dropped any, explain why.
 
-- [ ] **Step 12 — Markdown cell "Action plan":** load the model → predict stars for all 500 → map to bands → compare with ratings → hunt for false negatives → check by hand → conclude.
+- [x] **Step 12 — Markdown cell "Action plan":** load the model → predict stars for all 500 → map to bands → compare with ratings → hunt for false negatives → check by hand → conclude.
 
-- [ ] **Step 13 — Markdown cell "Why this model":** `nlptown` is fixed by the client brief. It outputs 1–5 stars. Note the domain-mismatch risk up front (product vs service reviews). Paste the star → band table.
+- [x] **Step 13 — Markdown cell "Why this model":** `nlptown` is fixed by the client brief. It outputs 1–5 stars. Note the domain-mismatch risk up front (product vs service reviews). Paste the star → band table.
 
-- [ ] **Step 14 — Code cell: pin the model and the mapping.**
+- [x] **Step 14 — Code cell: pin the model and the mapping.**
   ```python
   MODEL_NAME = "nlptown/bert-base-multilingual-uncased-sentiment"
 
@@ -205,7 +205,7 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
   ```
   - *Check:* `stars_to_sentiment("1 star")` gives `NEGATIVE` and `stars_to_sentiment("5 stars")` gives `POSITIVE`.
 
-- [ ] **Step 15 — Load the model ONCE in its own cell.**
+- [x] **Step 15 — Load the model ONCE in its own cell.**
   ```python
   from transformers import pipeline
   classifier = pipeline("text-classification", model=MODEL_NAME)

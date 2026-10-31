@@ -123,26 +123,30 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
 - [x] **Step 1 — Look at the raw data by eye.** Open `data/raw/reviews.csv` and read 10 reviews.
   - *Learn:* before any code, get a feel for the data. Do the 5-star reviews ever mention complaints?
   - *Check:* you can name the 3 columns and guess roughly what share of ratings are 5s.
+  - *Done:* found reviews **17** (★4, "polite but a bit slow… Five stars") and **22** (★5, "waited 25 minutes just to get water"). Reuse them in Steps 19 and 21.
 
-- [x] **Step 2 — Create a virtual environment.**
+- [x] **Step 2 — Create a virtual environment.** *(commands are for Git Bash)*
   ```bash
-  python -m venv .venv
-  # Windows: .venv\Scripts\activate   |   macOS/Linux: source .venv/bin/activate
+  py -V:Astral/CPython3.12.14 -m venv /c/venvs/wlr
+  source /c/venvs/wlr/Scripts/activate
+  python -m pip install --upgrade pip
   pip install -r requirements.txt
   ```
-  - *Note:* you are on Python 3.14. If `torch` fails to install, create the venv with Python 3.12 instead (`py -3.12 -m venv .venv`).
-  - *Check:* `python -c "import pandas; print(pandas.__version__)"` works.
+  - *Why outside the repo:* a `.venv` inside this folder fails with `WinError 206: filename too long`. The repo path is ~185 chars and Windows limits paths to 260.
+  - *Why 3.12:* `torch` may have no build for Python 3.14 yet. `py -0` lists installed Pythons. The 3.12 one was installed by uv, so its tag is `Astral/CPython3.12.14`.
+  - *Check:* `python -c "import pandas; print(pandas.__version__)"` works (3.1.0).
 
 - [x] **Step 3 — Install the model libraries and pin them.**
   ```bash
   pip install transformers torch
-  pip freeze | grep -iE "^(transformers|torch|pandas)=="
+  pip freeze
   ```
-  Add those exact lines to `requirements.txt`, e.g. `transformers==X.Y.Z`, `torch==X.Y.Z`.
+  Replace every line in `requirements.txt` with its exact `pip freeze` version, plus `torch` and `transformers`.
+  - *Assignment requirement:* "Dependencies are pinned in `requirements.txt`."
   - *Learn:* why pin? So someone who clones the repo in a year gets the same behaviour you did.
-  - *Check:* `requirements.txt` has `==` versions for `transformers` and `torch`.
+  - *Check:* every line in `requirements.txt` uses `==` (done: `torch==2.15.0`, `transformers==5.22.1`).
 
-- [ ] **Step 4 — Smoke-test the model in a Python shell.**
+- [ ] **Step 4 — Smoke-test the model in a Python shell.** *(Skipped. It's a plan suggestion, not an assignment requirement; the model downloads at Step 15 instead. The interactive `python` prompt freezes in Git Bash, so use a heredoc `python - <<'EOF' … EOF` or `winpty python` if you try it.)*
   ```python
   from transformers import pipeline
   clf = pipeline("text-classification", model="nlptown/bert-base-multilingual-uncased-sentiment")
@@ -152,6 +156,15 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
   - *Check:* you see something like `[{'label': '3 stars', 'score': 0.4...}]`. Try 3–4 sentences of your own. Which ones does it get "wrong"?
 
 - [x] **Step 5 — Make sure `.gitignore` keeps junk out.** Add `.venv/` and `.ipynb_checkpoints/` if they are missing.
+  - Committed as `2622cea` together with the pinned `requirements.txt`.
+
+- [x] **Step 5b — Connect the notebook to the venv.**
+  - Install the VS Code **Jupyter** extension (by Microsoft): `code --install-extension ms-toolsai.jupyter`. Without it, *Select Kernel* shows nothing.
+  - In the venv: `pip install ipykernel` (pinned in `requirements.txt` as `ipykernel==7.4.0`).
+  - VS Code doesn't scan `C:\venvs` by default, so `wlr` was missing from the list. Fix: add `"python.venvPath": "C:\\venvs"` to the VS Code **user** settings (not the repo's `.vscode/settings.json`, which is committed).
+  - Reload VS Code (Ctrl+Shift+P → *Developer: Reload Window*), open `src/explore.ipynb` → *Select Kernel* → *Python Environments* → `wlr`.
+  - *Pitfall:* typing a path into the *Select Kernel* search box and pressing Enter runs "Create Python Environment". The box only filters the list.
+  - *Check:* a cell with `import pandas; pandas.__version__` shows `'3.1.0'` ✔.
 
 - [ ] **Step 6 — Title + Objectives markdown cell** at the very top of the notebook:
   - the business question (written sentiment vs the 4.5-star average)

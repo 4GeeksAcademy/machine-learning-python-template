@@ -252,7 +252,7 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
 
   Markdown: write your **hypothesis** of why a product-review model misreads service-review text.
 
-- [ ] **Step 21 — Manual sample (15–20 reviews).** Pick a mix: some false negatives, some agreements, some 3-star ratings. Read each one yourself and fill in a table:
+- [x] **Step 21 — Manual sample (15–20 reviews).** Pick a mix: some false negatives, some agreements, some 3-star ratings. Read each one yourself and fill in a table:
 
   | review_id | rating | text (truncated) | predicted_stars | manual_sentiment | match? | notes |
   | --- | --- | --- | --- | --- | --- | --- |
@@ -261,7 +261,7 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
   - *Learn:* this is your evidence that you did not trust the model blindly.
   - *Check:* at least 15 rows, and each mismatch has a note.
 
-- [ ] **Step 22 — Conclusions markdown**, written for the account manager (no jargon):
+- [x] **Step 22 — Conclusions markdown**, written for the account manager (no jargon):
   - X % positive / Y % neutral / Z % negative according to the model
   - does that line up with 4.5 stars? Where does the gap come from: real dissatisfaction, or the model misreading service language?
   - a recommendation, e.g. "the model under-counts positivity; don't put the raw negative % in front of the client without manual review" or "consider a better-fitting model" (see Step 31)

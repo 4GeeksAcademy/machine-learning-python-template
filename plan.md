@@ -266,12 +266,12 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
   - does that line up with 4.5 stars? Where does the gap come from: real dissatisfaction, or the model misreading service language?
   - a recommendation, e.g. "the model under-counts positivity; don't put the raw negative % in front of the client without manual review" or "consider a better-fitting model" (see Step 31)
 
-- [ ] **Step 23 — Restart & Run All.** The notebook must run top to bottom with saved outputs.
+- [x] **Step 23 — Restart & Run All.** The notebook must run top to bottom with saved outputs.
   - *Check:* no error cells, and every chart and table is visible on GitHub.
 
-- [ ] **Step 24 — Remove the template's DB code from `src/app.py`.** The template's `from utils import db_connect` needs a `DATABASE_URL`, and this project has no database.
+- [x] **Step 24 — Remove the template's DB code from `src/app.py`.** The template's `from utils import db_connect` needs a `DATABASE_URL`, and this project has no database.
 
-- [ ] **Step 25 — Write the functions in `src/app.py`.** Move the logic over from the notebook. This file does inference only, with no analysis.
+- [x] **Step 25 — Write the functions in `src/app.py`.** Move the logic over from the notebook. This file does inference only, with no analysis.
 
   | Function / constant | Role |
   | --- | --- |
@@ -285,7 +285,7 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
   Finish with `if __name__ == "__main__": main()`.
   - *Learn:* paths are relative to the repo root, so run the script from the root.
 
-- [ ] **Step 26 — Run it:** `python src/app.py`
+- [x] **Step 26 — Run it:** `python src/app.py`
   - *Check:* `data/processed/reviews_with_sentiment.csv` exists with 500 rows and columns
     `review_id,rating,review_text,predicted_stars,predicted_sentiment,confidence`, and the terminal prints counts and percentages.
   - *Check:* the numbers match your notebook.
@@ -300,18 +300,18 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
     NEGATIVE:  60 (12.0%)
   ```
 
-- [ ] **Step 27 — Final checklist** (mirrors "What We Will Evaluate"):
-  - [ ] `src/explore.ipynb` has executed outputs and the full arc: objectives → EDA → cleaning → plan/model → results → conclusions
-  - [ ] short transitional markdown between code blocks
-  - [ ] model loaded via `pipeline()` / `from_pretrained()`, with no weights in the repo
-  - [ ] `MODEL_NAME` pinned
-  - [ ] model loaded once and reused
-  - [ ] all 500 reviews have stars + a band
-  - [ ] breakdown % calculated and explicitly compared with 4.5 stars
-  - [ ] false negatives documented, with a hypothesis
-  - [ ] 15–20 manually reviewed examples
-  - [ ] `src/app.py` runs and writes `data/processed/reviews_with_sentiment.csv`
-  - [ ] dependencies pinned in `requirements.txt`
+- [x] **Step 27 — Final checklist** (mirrors "What We Will Evaluate"):
+  - [x] `src/explore.ipynb` has executed outputs and the full arc: objectives → EDA → cleaning → plan/model → results → conclusions
+  - [x] short transitional markdown between code blocks
+  - [x] model loaded via `pipeline()` / `from_pretrained()`, with no weights in the repo
+  - [x] `MODEL_NAME` pinned
+  - [x] model loaded once and reused
+  - [x] all 500 reviews have stars + a band
+  - [x] breakdown % calculated and explicitly compared with 4.5 stars
+  - [x] false negatives documented, with a hypothesis
+  - [x] 15–20 manually reviewed examples
+  - [x] `src/app.py` runs and writes `data/processed/reviews_with_sentiment.csv`
+  - [x] dependencies pinned in `requirements.txt`
 
 - [ ] **Step 28 — Commit and push** the notebook, `app.py`, the processed CSV, `requirements.txt` and `data/raw/reviews.csv`. Submit the repo link.
 

@@ -234,14 +234,14 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
   - *Learn:* the crosstab diagonal shows agreement. The cells for rating 4–5 vs predicted 1–2 are your false negatives.
   - Markdown: in plain words, where is the gap?
 
-- [ ] **Step 19 — Find the false negatives.**
+- [x] **Step 19 — Find the false negatives.**
   ```python
   false_negatives = df[(df["rating"] >= 4) & (df["predicted_stars"] <= 2)]
   ```
   - count them and show them as a % of all reviews
   - list them with `review_id`, `rating`, `predicted_stars`, text, and a one-line reason for each
 
-- [ ] **Step 20 — Group the false negatives into patterns.** The solution's patterns are below; check which ones appear in *your* data.
+- [x] **Step 20 — Group the false negatives into patterns.** The solution's patterns are below; check which ones appear in *your* data.
 
   | Pattern | Example | Why the model fails |
   | --- | --- | --- |

@@ -211,7 +211,7 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
   classifier = pipeline("text-classification", model=MODEL_NAME)
   ```
 
-- [ ] **Step 16 — Run inference on all 500 reviews in a separate cell.** Add 3 columns: `predicted_stars`, `predicted_sentiment`, `confidence`.
+- [x] **Step 16 — Run inference on all 500 reviews in a separate cell.** Add 3 columns: `predicted_stars`, `predicted_sentiment`, `confidence`.
   ```python
   results = classifier(df["review_text"].tolist(), truncation=True, batch_size=16)
   df["predicted_stars"] = [int(r["label"].split()[0]) for r in results]
@@ -221,13 +221,13 @@ Steps 6–23 go in **`src/explore.ipynb`**, in order, with short markdown betwee
   - *Learn:* passing a list lets the pipeline batch the reviews, which is faster than a Python loop and still uses the one loaded model. `truncation=True` protects against texts longer than 512 tokens.
   - *Check:* `df["predicted_stars"].isna().sum() == 0` and `len(df) == 500`.
 
-- [ ] **Step 17 — Sentiment breakdown.**
+- [x] **Step 17 — Sentiment breakdown.**
   ```python
   df["predicted_sentiment"].value_counts(normalize=True).mul(100).round(1)
   ```
   Plot it as a bar chart.
 
-- [ ] **Step 18 — Compare with the 4.5-star average.**
+- [x] **Step 18 — Compare with the 4.5-star average.**
   - human mean rating vs model mean `predicted_stars`
   - map the *human* ratings to bands with the same rule, then put human % and model % side by side
   - a crosstab: `pd.crosstab(df["rating"], df["predicted_stars"])`, plotted as a heatmap

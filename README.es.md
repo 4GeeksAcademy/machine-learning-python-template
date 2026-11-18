@@ -110,3 +110,34 @@ Para procesar datos, puedes modificar el script app.py para incluir tus pasos de
 Esta plantilla fue construida como parte del [Data Science and Machine Learning Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning) de 4Geeks Academy por [Alejandro Sanchez](https://twitter.com/alesanchezr) y muchos otros contribuyentes. Descubre más sobre [los programas BootCamp de 4Geeks Academy](https://4geeksacademy.com/us/programs) aquí.
 
 Otras plantillas y recursos como este se pueden encontrar en la página de GitHub de la escuela.
+
+# Update
+
+## Clasificación de perros y gatos con EfficientNet-B0
+
+El objetivo de esta práctica es clasificar imágenes de perros y gatos. Se visualizaron las primeras nueve fotos de cada clase. Las imágenes originales eran a color y tenían distintas dimensiones y proporciones, por lo que se redimensionaron a 200 × 200 píxeles.
+
+Las 25.000 imágenes etiquetadas se dividieron de forma estratificada en 20.000 para entrenamiento, 2.500 para validación y 2.500 para prueba. EfficientNet-B0 se entrenó desde cero. Se usó la pérdida de validación para seleccionar el mejor modelo y detener el entrenamiento cuando dejó de mejorar.
+
+### Resultados
+
+| Métrica | Resultado |
+| --- | ---: |
+| Mejor época según la pérdida de validación | 8 |
+| Pérdida de validación en la mejor época | 0,2037 |
+| Exactitud en prueba | 92,12 % |
+| Pérdida en prueba | 0,2016 |
+| Predicciones correctas en prueba | 2.303 de 2.500 |
+
+El entrenamiento se detuvo en la época 13 tras cinco épocas consecutivas sin mejorar la pérdida de validación. Para obtener los resultados de prueba se recargó el modelo de la época 8.
+
+### Cómo reproducir el entrenamiento
+
+Desde la raíz del repositorio, con un entorno activo de Python 3.11:
+
+```bash
+python -m pip install "tensorflow>=2.16,<3" matplotlib pillow
+python src/train_dogs_cats.py
+```
+
+El script guarda el mejor modelo en `models/dogs_vs_cats.keras`. En `data/processed/` guarda las dos cuadrículas de imágenes, `dogs_vs_cats_predictions.csv` y `dogs_vs_cats_metrics.json`.

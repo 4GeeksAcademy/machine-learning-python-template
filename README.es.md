@@ -141,3 +141,13 @@ python src/train_dogs_cats.py
 ```
 
 El script guarda el mejor modelo en `models/dogs_vs_cats.keras`. En `data/processed/` guarda las dos cuadrículas de imágenes, `dogs_vs_cats_predictions.csv` y `dogs_vs_cats_metrics.json`.
+
+## Agrupación de viviendas en California
+
+Se usaron la latitud, la longitud y el ingreso mediano de 20.640 grupos de bloques censales. Se reservaron 16.512 registros para entrenamiento y 4.128 para prueba. Tras estandarizar las tres variables, se entrenó K-Means con seis clústeres y se asignó cada punto de prueba al centroide más cercano.
+
+La silueta en prueba fue de **0,397**, lo que indica una separación moderada entre los grupos. Los clústeres 1 y 3 tienen centros geográficos cercanos, pero sus medianas de ingreso difieren (2,85 frente a 5,10 en las unidades del dataset). El gráfico usa solo longitud y latitud, por lo que parte de la separación por ingresos queda fuera de la vista.
+
+El clasificador SVM lineal reprodujo las etiquetas de K-Means en **4.104 de 4.128** registros de prueba. Obtuvo **99,42 % de exactitud** y un **F1 macro de 0,992**. Estas métricas miden el acuerdo entre ambos modelos sobre los puntos de prueba.
+
+El [gráfico de clústeres](california-housing/results/clusters.png) muestra los puntos de entrenamiento y de prueba. Las métricas y la matriz de confusión están en `california-housing/results/metrics.json`. Los dos modelos se guardaron en `california-housing/models/`.
